@@ -1,0 +1,66 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<MVC_Kutuphane_Otomasyonu.Entities.Model.KitapTurleri>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<form action="/KitapTurleri/Index" method="get" >
+    <label style="font-weight:bold">Kitap Türü Ara : </label>
+    @Html.TextBox("ara", Request["ara"])
+    <button type="submit">Ara</button>
+</form>
+<div class="rom">
+    <div class="col-lg">
+        <div class="ibox">
+            <div class="ibox-head">
+                Kitap Türleri Listesi
+            </div>
+            <div class="ibox-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <td>Kitap</td>
+                            <td>Açıklama</td>
+                            <td>Düzenle</td>
+                            <td>Sil</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.Id</th>
+                                <td>@item.KitapTuru</td>
+                                <td>@item.Aciklama</td>
+                                <td><a href="/KitapTurleri/Duzenle/@item.Id" class="btn btn-warning">Düzenle</a></td>
+                                <td><a href="/KitapTurleri/Sil/@item.Id" class="btn btn-danger">Sil</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model, page =>
+    Url.Action("Index", "KitapTurleri", new { page, ara = Request["ara"] }),
+    new PagedListRenderOptions
+    {
+        FunctionToTransformEachPageLink = (li, a) =>
+        {
+            a.AddCssClass("page-link");
+            li.InnerHtml = a.ToString();
+            return li;
+        }
+    })
+
+
+
+
+
+                <a href="/KitapTurleri/Ekle" class="btn btn-success">Yeni</a>
+
+            </div>
+        </div>
+    </div>
+
+</div>

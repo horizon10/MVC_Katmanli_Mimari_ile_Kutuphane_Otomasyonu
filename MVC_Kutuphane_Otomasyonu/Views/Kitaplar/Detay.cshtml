@@ -1,0 +1,61 @@
+﻿@model MVC_Kutuphane_Otomasyonu.Entities.Model.Kitaplar
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="rom">
+    <div class="col-lg">
+        <div class="ibox">
+            <div class="ibox-head">
+                <b>@Html.DisplayFor(x=>x.Id) nolu Kitap Bilgileri</b>
+                
+            </div>
+            <div class="ibox-body">
+                <div class="form-body">
+                    <b>Kitap Türü : </b>
+                    @Html.DisplayFor(x => x.KitapTurleri.KitapTuru)
+                </div>
+                <div class="form-body">
+                    <b>Barkod No : </b>
+                    @Html.DisplayFor(x => x.BarkodNo)
+                </div><div class="form-body">
+                    <b>Kitap Adı : </b>
+                    @Html.DisplayFor(x => x.KitapAdi)
+                </div><div class="form-body">
+                    <b>Yazar Adı : </b>
+                    @Html.DisplayFor(x => x.YazarAdi)
+                </div><div class="form-body">
+                    <b>Yayın Evi : </b>
+                    @Html.DisplayFor(x => x.YayinEvi)
+                </div><div class="form-body">
+                    <b>Sayfa Sayısı: </b>
+                    @Html.DisplayFor(x => x.SayfaSayisi)
+                </div>
+                <div class="form-body">
+                    <b>Açıklama : </b>
+                    @Html.DisplayFor(x => x.Aciklama)
+                </div>
+                <div class="form-body">
+                    <b>Ekleme Tarihi : </b>
+                    @Html.DisplayFor(x => x.EklemeTarihi)
+                </div>
+                <div class="form-body">
+                    <b>Güncelleme Tarihi : </b>
+                    @Html.DisplayFor(x => x.GuncellemeTarihi)
+                </div>
+                <div class="form-body">
+                    <b>Silindi Mi : </b>
+                    @Html.DisplayFor(x => x.SilindiMi)
+                </div>
+                <div class="form-group">
+                    @Html.ActionLink("Kitap Listesi", "Index",null, new { @class = "btn btn-info" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,200 @@
+﻿@model MVC_Kutuphane_Otomasyonu.Entities.Model.Duyurular
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="rom">
+    <div class="col-lg">
+        <div class="ibox">
+            <div class="ibox-head">
+                Duyuru Listesi
+            </div>
+            <div class="ibox-body">
+                <table class="table table-bordered table-striped" id="tbl">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <td>Başlık</td>
+                            <td>Duyuru</td>
+                            <td>Açıklama</td>
+                            <td>Tarih</td>
+                            <td>İşlemler</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#dataModal" onclick="Ekle()">
+                        Yeni Duyuru
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Modal: Yeni Duyuru -->
+<div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="dataModalLabel">Duyuru Ekleme Sayfası</h3>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="data-form">
+                    <div id="textSil">
+                        <div class="form-group">
+                            @Html.HiddenFor(a => a.Id, new { @class = "form-control", placeholder = "Id", id = "txtId",Value=0 })
+                         
+
+                        </div>
+                            @Html.TextBoxFor(a => a.Baslik, new { @class = "form-control", placeholder = "Başlık" ,id="txtBaslik" })
+                            @Html.ValidationMessageFor(x => x.Baslik, "", new { @class = "text-danger" })
+
+
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(a => a.Duyuru, new { @class = "form-control", placeholder = "Duyuru", id = "txtDuyuru" })
+                            @Html.ValidationMessageFor(x => x.Duyuru, "", new { @class = "text-danger" })
+
+
+                        </div>
+                        <div class="form-group">
+                            @Html.TextAreaFor(a => a.Aciklama, new { @class = "form-control", placeholder = "Açıklama", id = "txtAciklama" })
+                            @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(a => a.Tarih, new { @class = "form-control", type = "datetime-local", id = "txtTarih" })
+                            @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "text-danger" })
+
+
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- jQuery önce -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Senin AJAX Scriptin -->
+<script>
+    function Listele() {
+        $('#tbl tbody').html("");
+        $.ajax({
+            type: 'get',
+            url: '@Url.Action("DuyuruList", "Duyurular")',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    var milisecond = parseInt(item.Tarih.substr(6));
+                    var formattedDate = moment(milisecond).format('DD.MM.YYYY HH:mm:ss');
+                    var row = '<tr><td>' + item.Id + '</td><td>'
+                        + item.Baslik + '</td><td>'
+                        + item.Duyuru + '</td><td>'
+                        + item.Aciklama + '</td><td>'
+                        + formattedDate + '</td><td>'
+                        + '<a href=# class="btnDuzenle btn btn-warning btn-sm" data-id="'+item.Id+'"><i class="fa fa-edit"></i></a> '
+                        + '<a href="/Duyurular/Detay/' + item.Id + '" class="btn btn-info btn-sm"><i class="fa fa-info"></i></a> '
+                        + '<a href="/Duyurular/Sil/' + item.Id + '" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>'
+                        + '</td></tr>';
+                    $('#tbl tbody').append(row);
+                });
+            },
+            error: function (error) {
+                console.log("AJAX HATASI:", error);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        Listele();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#data-form').submit(function (e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+            $.ajax({
+                method: 'post',
+                url: '@Url.Action("DuyuruEkle")',
+                data: formData,
+                success: function (result) {
+                    if (result.success) {
+                        Listele();
+                        $('#dataModal').modal('hide');
+                        alert(result.message)
+                        Temizle();
+                    }
+                    else {
+                        $.each(result.errors, function (key, value) {
+                            $('[data-valmsg-for="' + key + '"]').text('');
+                            $('[data-valmsg-for="' + key + '"]').text(value[0]);
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).on('click', '.btnDuzenle', function () {
+        var Id = $(this).data('id');
+        $.ajax({
+            url: '/Duyurular/DuyuruGetir/',
+            type: 'get',
+            dataType: 'json',
+            data: { Id: Id },
+            success: function (result) {
+                $('#dataModal').modal('show');
+                $('#txtId').val(result.Id);
+                $('#txtBaslik').val(result.Baslik);
+                $('#txtDuyuru').val(result.Duyuru);
+                $('#txtAciklama').val(result.Aciklama);
+                var timestamp = parseInt(result.Tarih.replace("/Date(", "").replace(")/", ""));
+                var serverDate = new Date(timestamp);
+                var correctedDate = new Date(serverDate.getTime() - serverDate.getTimezoneOffset() * 60000);
+                var formattedDate = correctedDate.toISOString().slice(0, 16);
+                $('#txtTarih').val(formattedDate);
+            },
+            error: function () {
+                alert("Bir hata oluştu");
+            }
+        });
+    });
+</script>
+<script>
+    function Temizle() {
+        $('#data-form').trigger('reset');
+        $('#dataModalLabel').html('Duyuru Ekleme Sayfası');
+        $('#txtId').val('0');
+    }
+</script>
+<script>
+    function Ekle() {
+        Temizle();
+    }
+</script>

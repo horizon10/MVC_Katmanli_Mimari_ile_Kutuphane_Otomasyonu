@@ -1,0 +1,46 @@
+﻿@model MVC_Kutuphane_Otomasyonu.Entities.Model.KitapTurleri
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="rom">
+    <div class="col-lg">
+        <div class="ibox">
+            <div class="ibox-head">
+                Kitap Türü Güncelleme Sayfasi
+            </div>
+            <div class="ibox-body">
+                @using (Html.BeginForm("Duzenle", "KitapTurleri", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(x=>x.Id)
+                    <div class="form-group">
+                        <div>
+                            @Html.LabelFor(x => x.KitapTuru)
+                        </div>
+                        <div>
+                            @Html.TextBoxFor(x => x.KitapTuru, new { @class = "form-control" })
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            @Html.LabelFor(x => x.Aciklama)
+                        </div>
+                        <div>
+                            @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Düzenle" class="btn btn-warning"/>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
