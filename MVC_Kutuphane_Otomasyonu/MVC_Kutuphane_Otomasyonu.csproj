@@ -149,6 +149,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KitaplarController.cs" />
     <Compile Include="Controllers\KitapTurleriController.cs" />
+    <Compile Include="Controllers\KullanicilarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5241,6 +5242,10 @@
     <Content Include="Views\Kitaplar\Ekle.cshtml" />
     <Content Include="Views\Kitaplar\Duzenle.cshtml" />
     <Content Include="Views\Duyurular\Index.cshtml" />
+    <Content Include="Views\Duyurular\_PartialDuyuru.cshtml" />
+    <Content Include="Views\Kullanicilar\Login.cshtml" />
+    <Content Include="Views\Kullanicilar\KayitOl.cshtml" />
+    <Content Include="Views\Kullanicilar\SifremiUnuttum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

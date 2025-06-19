@@ -43,5 +43,25 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
             var model=duyurularDAL.GetByFilter(context,x=>x.Id==id);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult DuyuruSil(int? Id)
+        {
+            duyurularDAL.Delete(context, x => x.Id == Id);
+            duyurularDAL.Save(context);
+            return Json(new { success = false });
+        }
+        [HttpPost]
+        public JsonResult SeciliDuyuruSil(List<int> selectedIds)
+        {
+            if (selectedIds != null)
+            {
+                foreach (int id in selectedIds)
+                {
+                    duyurularDAL.Delete(context, x => x.Id == id);
+                    duyurularDAL.Save(context);
+                }
+                return Json(new {success=true});
+            }
+            return Json(new {success=false});
+        }
     }
 }
