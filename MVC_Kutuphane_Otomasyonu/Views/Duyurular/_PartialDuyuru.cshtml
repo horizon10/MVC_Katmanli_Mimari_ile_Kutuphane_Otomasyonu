@@ -1,19 +1,22 @@
 ﻿@model MVC_Kutuphane_Otomasyonu.Entities.Model.Duyurular
 
+
+
 <div class="rom">
     <div class="col-lg">
+        <div class="form-group">
+            <button class="btn btn-danger" type="submit" id="silButton">Seçili Sil</button>
+        </div>
         <div class="ibox">
             <div class="ibox-head">
-                <div class="form-group">
-                    <button class="btn btn-danger" type="submit" id="silButton">Seçili Sil</button>
-                </div>
+
                 Duyuru Listesi
             </div>
             <div class="ibox-body">
                 <table class="table table-bordered table-striped" id="tbl">
                     <thead>
                         <tr>
-                            <td><input type="checkbox" id="tdCheck"/></td>
+                            <td><input type="checkbox" id="tdCheck" /></td>
                             <th>Id</th>
                             <td>Başlık</td>
                             <td>Duyuru</td>

@@ -112,6 +112,7 @@
     <Compile Include="Model\KullaniciRolleri.cs" />
     <Compile Include="Model\Roller.cs" />
     <Compile Include="Model\Uyeler.cs" />
+    <Compile Include="Model\ViewModel\KullaniciRolViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Validations\DuyurularValidatior.cs" />

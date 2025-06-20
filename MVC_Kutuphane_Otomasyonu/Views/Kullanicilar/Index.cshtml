@@ -1,0 +1,56 @@
+﻿
+@model List<MVC_Kutuphane_Otomasyonu.Entities.Model.Kullanicilar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="rom">
+    <div class="col-lg">
+        <div class="ibox">
+            <div class="ibox-head">
+                Kullanıcı Listesi
+            </div>
+            <div class="ibox-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <td>Kullanıcı</td>
+                            <td>Adı Soyadı</td>
+                            <td>Telefon</td>
+                            <td>Email</td>
+                            <td>Kayıt Tarihi</td>
+                            <td>İşlemler</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@Html.DisplayFor(x => item.Id)</th>
+                                <td>@Html.DisplayFor(x => item.KullaniciAdi)</td>
+                                <td>@Html.DisplayFor(x => item.AdiSoyadi)</td>
+                                <td>@Html.DisplayFor(x => item.Telefon)</td>
+                                <td>@Html.DisplayFor(x => item.Email)</td>
+                                <td>@Html.DisplayFor(x => item.KayıtTarihi)</td>
+                                <td>
+                                    @Html.ActionLink("Duzenle", "Duzenle", new { id = item.Id }, new { @class = "btn btn-warning btn-sn" }) |
+                                    @Html.ActionLink("Detay", "Detay", new { id = item.Id }, new { @class = "btn btn-info btn-sn" }) |
+                                    @Html.ActionLink("Sil", "Sil", new { id = item.Id }, new { @class = "btn btn-danger btn-sn delete", onclick = "return confirm('Kayıt silinsin mi?')" }) |
+                                    @Html.ActionLink("Rolleri", "KRolleri", new { id = item.Id }, new { @class = "btn btn-primary btn-sn" }) 
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    @Html.ActionLink("Yeni", "Ekle", null, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

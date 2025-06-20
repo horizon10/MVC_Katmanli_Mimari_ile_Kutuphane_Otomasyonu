@@ -1,0 +1,66 @@
+﻿@model MVC_Kutuphane_Otomasyonu.Entities.Model.Kullanicilar
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-lg">
+        <div class="ibox">
+            <div class="ibox-head">
+
+                <h2 class="login-title">Düzenleme İşlemleri</h2>
+            </div>
+            <div class="ibox-body">
+                @using (Html.BeginForm("Duzenle", "Kullanicilar", FormMethod.Post))
+                {
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+
+
+                    <div class="form-group">
+
+                        @Html.TextBoxFor(x => x.AdiSoyadi, new { @class = "form-control", placeholder = "Adı Soyadı" })
+                        @Html.ValidationMessageFor(x => x.AdiSoyadi, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.Telefon, new { @class = "form-control", placeholder = "Telefon" })
+                        @Html.ValidationMessageFor(x => x.Telefon, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextAreaFor(x => x.Adres, new { @class = "form-control", placeholder = "Adres" })
+                        @Html.ValidationMessageFor(x => x.Adres, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Email" })
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.KullaniciAdi, new { @class = "form-control", placeholder = "Kullanıcı Adı" })
+                        @Html.ValidationMessageFor(x => x.KullaniciAdi, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.Sifre, new { @class = "form-control", placeholder = "Şifre" })
+                        @Html.ValidationMessageFor(x => x.Sifre, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.DisplayNameFor(x => x.KayıtTarihi)
+                        @Html.TextBoxFor(x => x.KayıtTarihi, new { @class = "form-control", type = "datetime-local" ,Value=Model.KayıtTarihi.ToString("yyyy-MM-dd HH:mm")})
+                        @Html.ValidationMessageFor(x => x.KayıtTarihi, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary " type="submit">Kaydet</button>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+

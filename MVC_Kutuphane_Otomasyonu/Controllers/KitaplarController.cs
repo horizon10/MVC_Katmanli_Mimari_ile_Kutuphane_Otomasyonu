@@ -9,11 +9,14 @@ using System.Web.Mvc;
 
 namespace MVC_Kutuphane_Otomasyonu.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class KitaplarController : Controller
     {
         // GET: Kitaplar
         KutuphaneContext context=new KutuphaneContext();
-        KitaplarDAL KitaplarDAL = new KitaplarDAL();    
+        KitaplarDAL KitaplarDAL = new KitaplarDAL();
+
+ 
         public ActionResult Index()
         {
             var model = KitaplarDAL.GetAll(context,null,"KitapTurleri");

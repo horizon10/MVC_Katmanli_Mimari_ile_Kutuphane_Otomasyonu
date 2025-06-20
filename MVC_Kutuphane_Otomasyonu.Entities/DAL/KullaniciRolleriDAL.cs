@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MVC_Kutuphane_Otomasyonu.Entities.DAL
 {
-    internal class KullaniciRolleriDAL:GenericRepository<KutuphaneContext,KullaniciRolleri>
+    public class KullaniciRolleriDAL:GenericRepository<KutuphaneContext,KullaniciRolleri>
     {
 
     }

@@ -1,6 +1,7 @@
 ﻿using MVC_Kutuphane_Otomasyonu.Entities.DAL;
 using MVC_Kutuphane_Otomasyonu.Entities.Model;
 using MVC_Kutuphane_Otomasyonu.Entities.Model.Context;
+using MVC_Kutuphane_Otomasyonu.Entities.Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +13,78 @@ using System.Web.Security;
 
 namespace MVC_Kutuphane_Otomasyonu.Controllers
 {
+    [Authorize(Roles="Admin,Moderatör")]
     public class KullanicilarController : Controller
     {
         KutuphaneContext context = new KutuphaneContext();
         KullanicilarDAL kullanicilarDAL = new KullanicilarDAL();
+        KullaniciRolleriDAL KullaniciRolleriDAL=new KullaniciRolleriDAL();
+        RollerDAL RollerDAL = new RollerDAL();  
         // GET: Kullanicilar
         public ActionResult Index()
         {
+            var model=kullanicilarDAL.GetAll(context);
+            return View(model);
+        }
+        public ActionResult Ekle()
+        {
             return View();
         }
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Ekle(Kullanicilar entity)
+        {
+            if (!ModelState.IsValid) 
+            {
+                return View(entity);
+            }
+            kullanicilarDAL.InsertorUpdate(context,entity);
+            kullanicilarDAL.Save(context);
+            return RedirectToAction("Index2");
+        }
+        public ActionResult Duzenle(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound("Id değeri girilmedi");
+            }
+            var model=kullanicilarDAL.GetById(context,id);
+            return View(model);
+        }
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Duzenle(Kullanicilar entity)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(entity);
+            }
+            kullanicilarDAL.InsertorUpdate(context, entity);
+            kullanicilarDAL.Save(context);
+            return RedirectToAction("Index2");
+        }
+        public ActionResult Index2()
+        {
+            var kullanicilar = kullanicilarDAL.GetAll(context, tbl: "KullaniciRolleri");
+            var roller = RollerDAL.GetAll(context);
+            return View(new KullaniciRolViewModel { Kullanicilar=kullanicilar,Roller=roller});
+        }
+        public ActionResult KRolleri(int id)
+        {
+            var model = KullaniciRolleriDAL.GetAll(context, x => x.KullaniciId==id,"Roller");
+            if (model != null) 
+            {
+                return View(model);
+            }
+            return HttpNotFound();
+        }
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(Kullanicilar entity)
         {
             if (User.Identity.IsAuthenticated)
@@ -35,16 +94,18 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
             var model = kullanicilarDAL.GetByFilter(context, x => x.Email == entity.Email && x.Sifre == entity.Sifre);
             if (model != null)
             {
-                FormsAuthentication.SetAuthCookie(model.KullaniciAdi, false);
+                FormsAuthentication.SetAuthCookie(entity.Email, false);
                 return RedirectToAction("Index", "KitapTurleri");
             }
             ViewBag.error = "Kullanıcı adı veya şifre yanlış";
             return View();
         }
+        [AllowAnonymous]
         public ActionResult KayitOl()
         {
             return View();
         }
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult KayitOl(Kullanicilar entity, string sifreTekrar, bool kabul)
@@ -77,10 +138,12 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
                 }
             }
         }
+        [AllowAnonymous]
         public ActionResult SifremiUnuttum()
         {
             return View() ;
         }
+        [AllowAnonymous]
         [ValidateAntiForgeryToken, HttpPost]
         public ActionResult SifremiUnuttum(Kullanicilar entity)
         {
