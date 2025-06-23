@@ -13,7 +13,9 @@ using System.Web.Security;
 
 namespace MVC_Kutuphane_Otomasyonu.Controllers
 {
-    [Authorize(Roles="Admin,Moderatör")]
+    //denerken sürekli giriş yapmamak adına yorum satırına aldım 
+    //[Authorize(Roles="Admin,Moderatör")] 
+    [AllowAnonymous]
     public class KullanicilarController : Controller
     {
         KutuphaneContext context = new KutuphaneContext();
@@ -60,6 +62,12 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
                 return View(entity);
             }
             kullanicilarDAL.InsertorUpdate(context, entity);
+            kullanicilarDAL.Save(context);
+            return RedirectToAction("Index2");
+        }
+        public ActionResult Sil(int? id)
+        {
+            kullanicilarDAL.Delete(context, x => x.Id == id);
             kullanicilarDAL.Save(context);
             return RedirectToAction("Index2");
         }

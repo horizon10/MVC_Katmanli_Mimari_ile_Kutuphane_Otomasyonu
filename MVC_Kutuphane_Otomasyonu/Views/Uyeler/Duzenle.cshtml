@@ -1,0 +1,68 @@
+﻿@model MVC_Kutuphane_Otomasyonu.Entities.Model.Uyeler
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="rom">
+    <div class="col-lg">
+        <div class="ibox">
+            <div class="ibox-head">
+                <b>Uye Düzenleme Sayfası</b>
+            </div>
+            <div class="ibox-body">
+
+                @using (Html.BeginForm("Duzenle", "Uyeler", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <img src="@Model.ResimYolu" width="100"height="100"/>
+                   </div>
+
+                    <div class="form-group">
+                        <label>Resim</label>
+                        <input type="file" name="Resim" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DisplayNameFor(x => x.AdiSoyadi)
+                        @Html.TextBoxFor(x => x.AdiSoyadi, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AdiSoyadi, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.DisplayNameFor(x => x.Telefon)
+                        @Html.TextBoxFor(x => x.Telefon, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Telefon, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.DisplayNameFor(x => x.Adres)
+                        @Html.TextAreaFor(x => x.Adres, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Adres, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.DisplayNameFor(x => x.Email)
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DisplayNameFor(x => x.OkulKitapSayisi)
+                        @Html.TextBoxFor(x => x.OkulKitapSayisi, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.OkulKitapSayisi, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.DisplayNameFor(x => x.KayıtTarihi)
+                        @Html.TextBoxFor(x => x.KayıtTarihi, new { @class = "form-control", type = "datetime-local", Value = Model.KayıtTarihi.ToString("yyyy-MM-dd HH:mm") })
+                        @Html.ValidationMessageFor(x => x.KayıtTarihi, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

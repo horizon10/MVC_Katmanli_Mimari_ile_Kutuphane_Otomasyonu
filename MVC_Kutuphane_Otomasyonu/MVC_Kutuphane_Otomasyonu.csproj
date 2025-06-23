@@ -150,6 +150,9 @@
     <Compile Include="Controllers\KitaplarController.cs" />
     <Compile Include="Controllers\KitapTurleriController.cs" />
     <Compile Include="Controllers\KullanicilarController.cs" />
+    <Compile Include="Controllers\KullaniciRolleriController.cs" />
+    <Compile Include="Controllers\RollerController.cs" />
+    <Compile Include="Controllers\UyelerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4513,6 +4516,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\resim2.jpg" />
+    <Content Include="images\resim1.jpg" />
     <Content Include="JavaScript.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -5254,6 +5259,13 @@
     <Content Include="Views\Kullanicilar\Index2.cshtml" />
     <Content Include="Views\Kullanicilar\Ekle.cshtml" />
     <Content Include="Views\Kullanicilar\Duzenle.cshtml" />
+    <Content Include="Views\KullaniciRolleri\Ekle.cshtml" />
+    <Content Include="Views\KullaniciRolleri\Duzenle.cshtml" />
+    <Content Include="Views\Roller\Index.cshtml" />
+    <Content Include="Views\Roller\Ekle.cshtml" />
+    <Content Include="Views\Uyeler\Index.cshtml" />
+    <Content Include="Views\Uyeler\Ekle.cshtml" />
+    <Content Include="Views\Uyeler\Duzenle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -40,13 +40,13 @@
 
                                                 </div>
                                                 <div style="float:right;margin-top:8px">
-                                                    @Html.ActionLink("Duzenle", "Duzenle", new { id = rol.Id }, new { @class = "btn btn-warning btn-sn" }) |
-                                                    @Html.ActionLink("Sil", "Sil", new { id = rol.Id }, new { @class = "btn btn-danger btn-sn delete", onclick = "return confirm('Kayıt silinsin mi?')" })
+                                                    @Html.ActionLink("Duzenle", "Duzenle", "KullaniciRolleri", new { id = rol.Id }, new { @class = "btn btn-warning btn-sn" }) |
+                                                    @Html.ActionLink("Sil", "Sil", "KullaniciRolleri", new { id = rol.Id }, new { @class = "btn btn-danger btn-sn delete", onclick = "return confirm('Kayıt silinsin mi?')" })
 
                                                 </div>
                                             </li>
                                         }
-                                        @Html.ActionLink("Yeni", "Ekle", new { id = kullanici.Id }, new { @class = "btn btn-success btn-sn" ,style="margin-top:8px"}) 
+                                        @Html.ActionLink("Yeni", "Ekle", "KullaniciRolleri",new { id = kullanici.Id }, new { @class = "btn btn-success btn-sn" ,style="margin-top:8px"}) 
 
                                     </ul>
                                 </td>
