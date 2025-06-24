@@ -15,7 +15,7 @@ namespace MVC_Kutuphane_Otomasyonu.Entities.Model
         public int KullaniciId { get; set; }
         public string Aciklama { get; set; }
         public DateTime Tarih { get; set; }
-
+        public int islemYapan { get; set; }
         public Kullanicilar Kullanicilar { get; set; }
 
       

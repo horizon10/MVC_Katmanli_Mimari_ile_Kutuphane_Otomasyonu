@@ -14,18 +14,32 @@ using System.Web.Security;
 namespace MVC_Kutuphane_Otomasyonu.Controllers
 {
     //denerken sürekli giriş yapmamak adına yorum satırına aldım 
-    //[Authorize(Roles="Admin,Moderatör")] 
-    [AllowAnonymous]
+    [Authorize(Roles="Admin,Moderatör")] 
+    //[AllowAnonymous]
     public class KullanicilarController : Controller
     {
         KutuphaneContext context = new KutuphaneContext();
         KullanicilarDAL kullanicilarDAL = new KullanicilarDAL();
-        KullaniciRolleriDAL KullaniciRolleriDAL=new KullaniciRolleriDAL();
-        RollerDAL RollerDAL = new RollerDAL();  
+        KullaniciRolleriDAL KullaniciRolleriDAL = new KullaniciRolleriDAL();
+        RollerDAL RollerDAL = new RollerDAL();
+        KullaniciHareketleriDAL kullaniciHareketleriDAL = new KullaniciHareketleriDAL();
         // GET: Kullanicilar
+
+        public void KullaniciHareketleri(int kullaniciId, int islemYapanIdId, string aciklama)
+        {
+            var model = new KullaniciHareketleri
+            {
+                Aciklama = aciklama,
+                islemYapan = islemYapanIdId,
+                KullaniciId = kullaniciId,
+                Tarih=DateTime.Now
+            };
+            kullaniciHareketleriDAL.InsertorUpdate(context, model);
+            kullaniciHareketleriDAL.Save(context);
+        }
         public ActionResult Index()
         {
-            var model=kullanicilarDAL.GetAll(context);
+            var model = kullanicilarDAL.GetAll(context);
             return View(model);
         }
         public ActionResult Ekle()
@@ -36,12 +50,19 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
         [HttpPost]
         public ActionResult Ekle(Kullanicilar entity)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
                 return View(entity);
             }
-            kullanicilarDAL.InsertorUpdate(context,entity);
+            kullanicilarDAL.InsertorUpdate(context, entity);
             kullanicilarDAL.Save(context);
+
+            var kullaniciId=context.Kullanicilar.Max(x=>x.Id);
+            var userName=User.Identity.Name;
+            var model = kullanicilarDAL.GetByFilter(context, x => x.Email == userName);
+            var islemYapanId = model.Id;
+            string aciklama = model.KullaniciAdi + " kullanıcısı yeni bir kullanıcı ekledi.";
+            KullaniciHareketleri(kullaniciId,islemYapanId,aciklama);
             return RedirectToAction("Index2");
         }
         public ActionResult Duzenle(int? id)
@@ -50,7 +71,7 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
             {
                 return HttpNotFound("Id değeri girilmedi");
             }
-            var model=kullanicilarDAL.GetById(context,id);
+            var model = kullanicilarDAL.GetById(context, id);
             return View(model);
         }
         [ValidateAntiForgeryToken]
@@ -75,12 +96,12 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
         {
             var kullanicilar = kullanicilarDAL.GetAll(context, tbl: "KullaniciRolleri");
             var roller = RollerDAL.GetAll(context);
-            return View(new KullaniciRolViewModel { Kullanicilar=kullanicilar,Roller=roller});
+            return View(new KullaniciRolViewModel { Kullanicilar = kullanicilar, Roller = roller });
         }
         public ActionResult KRolleri(int id)
         {
-            var model = KullaniciRolleriDAL.GetAll(context, x => x.KullaniciId==id,"Roller");
-            if (model != null) 
+            var model = KullaniciRolleriDAL.GetAll(context, x => x.KullaniciId == id, "Roller");
+            if (model != null)
             {
                 return View(model);
             }
@@ -103,6 +124,10 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
             if (model != null)
             {
                 FormsAuthentication.SetAuthCookie(entity.Email, false);
+                int islemYapanId = model.Id;
+                string aciklama = model.KullaniciAdi + " kullanıcısı sisteme giriş yaptı";
+                KullaniciHareketleri(islemYapanId, islemYapanId, aciklama);
+
                 return RedirectToAction("Index", "KitapTurleri");
             }
             ViewBag.error = "Kullanıcı adı veya şifre yanlış";
@@ -131,16 +156,20 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
                 }
                 else//şifreler uyuşursa
                 {
-                    if(!kabul)//Şartlar kabul edilmemişse
+                    if (!kabul)//Şartlar kabul edilmemişse
                     {
                         ViewBag.kabulError = "Lütfen şartları kabul ettiğinizi onaylayın!";
                         return View();
                     }
                     else//Şartlar kabul edilmişse
                     {
-                        entity.KayıtTarihi=DateTime.Now;
+                        entity.KayıtTarihi = DateTime.Now;
                         kullanicilarDAL.InsertorUpdate(context, entity);
                         kullanicilarDAL.Save(context);
+                        int kullaniciId = context.Kullanicilar.Max(x => x.Id);
+                        string aciklama ="Yeni bir kullanıcı oluşturuldu.";
+                        KullaniciHareketleri(kullaniciId, kullaniciId, aciklama);
+
                         return RedirectToAction("Login");
                     }
                 }
@@ -149,7 +178,7 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
         [AllowAnonymous]
         public ActionResult SifremiUnuttum()
         {
-            return View() ;
+            return View();
         }
         [AllowAnonymous]
         [ValidateAntiForgeryToken, HttpPost]

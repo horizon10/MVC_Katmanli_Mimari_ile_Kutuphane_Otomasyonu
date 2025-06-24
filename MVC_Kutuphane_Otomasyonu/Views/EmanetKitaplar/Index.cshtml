@@ -1,0 +1,55 @@
+﻿
+@model List<MVC_Kutuphane_Otomasyonu.Entities.Model.EmanetKitaplar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="rom">
+    <div class="col-lg">
+        <div class="ibox">
+            <div class="ibox-head">
+                Emanet Kitap Listesi
+            </div>
+            <div class="ibox-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <td>Üye</td>
+                            <td>Kitap</td>
+                            <td>Kitap Sayısı</td>
+                            <td>Aldığı Tarih</td>
+                            <td>İade Tarih</td>
+                            <td>İşlemler</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@Html.DisplayFor(x => item.Id)</th>
+                                <td>@Html.DisplayFor(x => item.Uyeler.AdiSoyadi)</td>
+                                <td>@Html.DisplayFor(x => item.Kitaplar.KitapAdi)</td>
+                                <td>@Html.DisplayFor(x => item.KitapSayisi)</td>
+                                <td>@Html.DisplayFor(x => item.KitapAldigiTarihi)</td>
+                                <td>@Html.DisplayFor(x => item.KitapIadeTarihi)</td>
+                                <td>
+                                    @Html.ActionLink("Duzenle", "Duzenle", new { id = item.Id }, new { @class = "btn btn-warning btn-sn" }) |
+                                    @Html.ActionLink("Sil", "Sil", new { id = item.Id }, new { @class = "btn btn-danger btn-sn delete", onclick = "return confirm('Kayıt silinsin mi?')" })
+                                    @Html.ActionLink("Teslim Al", "TeslimAl","EmanetKitaplar", new { id = item.Id }, new { @class = "btn btn-primary btn-sn", onclick = "return confirm('Kitap(lar) iade edilsin mi?')" })
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    @Html.ActionLink("Emanet Kitap Ver", "EmanetKitapVer", null, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

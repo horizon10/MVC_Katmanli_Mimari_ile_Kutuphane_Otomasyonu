@@ -26,12 +26,22 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
             {
                 return HttpNotFound("KullanıcıId değeri girilmedi.");
             }
-            var model = kullaniciRolleriDAL.GetByFilter(context, x => x.KullaniciId == id,"Kullanicilar");
+
+            // Sadece kullanıcıyı çekiyoruz
+            var kullanici = context.Kullanicilar.Find(id);
+
+            if (kullanici == null)
+            {
+                return HttpNotFound("Kullanıcı bulunamadı.");
+            }
+
             ViewBag.KullaniciId = id;
-            ViewBag.kullaniciAdi=model.Kullanicilar.KullaniciAdi;
-            ViewBag.liste = new SelectList(context.Roller,"Id","Rol");
+            ViewBag.kullaniciAdi = kullanici.KullaniciAdi;
+            ViewBag.liste = new SelectList(context.Roller, "Id", "Rol");
+
             return View();
         }
+
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Ekle(KullaniciRolleri entity)
         {
