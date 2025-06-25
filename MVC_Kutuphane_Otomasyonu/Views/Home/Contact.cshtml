@@ -1,19 +1,47 @@
-﻿@{
+﻿@model MVC_Kutuphane_Otomasyonu.Entities.Model.Iletisim
+
+@{
+    Layout = "~/Views/Shared/_GenelLayout.cshtml";
     ViewBag.Title = "Contact";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
-
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
-
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
-</main>
+<div class="container">
+    <br />
+    <h3>İLETİŞİM</h3>
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
+        </div>
+    }
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <b>Adı Soyadı</b>
+            @Html.TextBoxFor(x => x.AdiSoyadi, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.AdiSoyadi, "", new { @class = "tex-danger" })
+        </div>
+        <div class="form-group">
+            <b>Email</b>
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Email, "", new { @class = "tex-danger" })
+        </div>
+        <div class="form-group">
+            <b>Başlık</b>
+            @Html.TextBoxFor(x => x.Baslik, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Baslik, "", new { @class = "tex-danger" })
+        </div>
+        <div class="form-group">
+            <b>Mesaj</b>
+            @Html.TextAreaFor(x => x.Mesaj, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Mesaj, "", new { @class = "tex-danger" })
+        </div>
+        <div class="form-group">
+            <b>Açıklama</b>
+            @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "tex-danger" })
+        </div>
+        <button type="submit" class="btn btn-primary">Gönder</button>
+    }
+    <br />
+</div>

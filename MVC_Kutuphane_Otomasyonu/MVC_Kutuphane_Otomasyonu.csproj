@@ -148,6 +148,7 @@
     <Compile Include="Controllers\DuyurularController.cs" />
     <Compile Include="Controllers\EmanetKitaplarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IstatistiklerController.cs" />
     <Compile Include="Controllers\KitaplarController.cs" />
     <Compile Include="Controllers\KitapTurleriController.cs" />
     <Compile Include="Controllers\KullanicilarController.cs" />
@@ -4515,6 +4516,25 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\.gitignore" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\dist\assets\favicon.ico" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\dist\css\styles.css" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\dist\index.html" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\dist\js\scripts.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\build-assets.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\build-pug.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\build-scripts.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\build-scss.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\clean.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\render-assets.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\render-pug.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\render-scripts.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\render-scss.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\sb-watch.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\start-debug.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\scripts\start.js" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\src\assets\favicon.ico" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\src\js\scripts.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\resim2.jpg" />
@@ -5215,6 +5235,13 @@
     <Content Include="AdminDashboard\admincast-master\html\tools\gulp\package-lock.json" />
     <Content Include="AdminDashboard\admincast-master\html\tools\gulp\package.json" />
     <Content Include="AdminDashboard\admincast-master\README.md" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\.editorconfig" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\LICENSE" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\package-lock.json" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\package.json" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\README.md" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\src\pug\index.pug" />
+    <Content Include="GenelLayout\startbootstrap-small-business-master\src\scss\styles.scss" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -5270,6 +5297,8 @@
     <Content Include="Views\EmanetKitaplar\Index.cshtml" />
     <Content Include="Views\EmanetKitaplar\EmanetKitapVer.cshtml" />
     <Content Include="Views\EmanetKitaplar\Duzenle.cshtml" />
+    <Content Include="Views\Shared\_GenelLayout.cshtml" />
+    <Content Include="Views\Istatistikler\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
