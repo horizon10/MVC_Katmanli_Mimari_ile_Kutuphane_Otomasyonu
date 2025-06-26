@@ -23,6 +23,22 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
             var model = emanetKitaplarDAL.GetAll(context, x => x.KitapIadeTarihi == null, "Kitaplar", "Uyeler");
             return View(model);
         }
+        public ActionResult Yazdir()
+        {
+            var model = emanetKitaplarDAL.GetAll(context, x => x.KitapIadeTarihi == null, "Kitaplar", "Uyeler");
+            return new Rotativa.ActionAsPdf("EmanetListesi", model)
+            { 
+                FileName="EmanetKitaplarListesi.pdf",
+                PageSize=Rotativa.Options.Size.A4,
+                PageOrientation=Rotativa.Options.Orientation.Portrait,
+                CustomSwitches="--disable-smart-shrinking"
+            };
+        }
+        public ActionResult EmanetListesi()
+        {
+            var model = emanetKitaplarDAL.GetAll(context, x => x.KitapIadeTarihi == null, "Kitaplar", "Uyeler");
+            return View(model);
+        }
         public ActionResult EmanetKitapVer()
         {
             ViewBag.UyeListe = new SelectList(context.Uyeler, "Id", "AdiSoyadi");

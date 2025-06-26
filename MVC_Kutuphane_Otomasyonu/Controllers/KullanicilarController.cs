@@ -219,5 +219,10 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
             }
             return View();
         }
+        public ActionResult Cikis()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
     }
 }

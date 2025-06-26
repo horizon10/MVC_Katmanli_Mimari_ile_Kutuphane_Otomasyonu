@@ -50,28 +50,28 @@
                     <div class="ibox-body">
                         <div class="flexbox mb-4">
                             <div>
-                                <h3 class="m-0">Statistics</h3>
-                                <div>Your shop sales analytics</div>
+                                <h3 class="m-0">İstatistikler</h3>
+                                <div>Analizler</div>
                             </div>
                             <div class="d-inline-flex">
                                 <div class="px-3" style="border-right: 1px solid rgba(0,0,0,.1);">
-                                    <div class="text-muted">WEEKLY INCOME</div>
+                                    <div class="text-muted">TOPLAM GİRİŞ SAYISI</div>
                                     <div>
-                                        <span class="h2 m-0">$850</span>
-                                        <span class="text-success ml-2"><i class="fa fa-level-up"></i> +25%</span>
+                                        <span class="h2 m-0">@ViewBag.ToplamKHGSayisi</span>
+                                        <span class="text-success ml-2"><i class="fa fa-level"></i> </span>
                                     </div>
                                 </div>
                                 <div class="px-3">
-                                    <div class="text-muted">WEEKLY SALES</div>
+                                    <div class="text-muted">SON ALTI AY GİRİŞ SAYISI</div>
                                     <div>
-                                        <span class="h2 m-0">240</span>
-                                        <span class="text-warning ml-2"><i class="fa fa-level-down"></i> -12%</span>
+                                        <span class="h2 m-0">@ViewBag.AltiAyToplamKHGSayisi</span>
+                                        <span class="text-warning ml-2"><i class="fa fa-level"></i></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <canvas id="bar_chart" style="height:260px;"></canvas>
+                            <canvas id="grafikHareket" style="height:260px;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,36 @@
                 text-align: right;
                 margin-left: 10px;
             }
-        </style>       
+        </style> 
+        <script>
+            var aylikVeri =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.AylikVeriler));
+            var labels = aylikVeri.map(data => `${data.Ay}/${data.yil}`);
+            var hareketSayilari = aylikVeri.map(data => data.HareketSay);
+
+            var grafik = document.getElementById('grafikHareket').getContext('2d');
+
+            new Chart(grafik, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Kullanıcı Girişleri',
+                        data: hareketSayilari,
+                        backgroundColor: 'rgba(54,162,235,0.2)',
+                        borderColor: 'rgba(54,162,235,1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
     </div>
 </body>
 

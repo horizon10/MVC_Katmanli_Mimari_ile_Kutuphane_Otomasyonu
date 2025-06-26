@@ -3,36 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|c:\\users\\ufukt\\desktop\\mvc_kutuphane_otomasyonu\\mvc_kutuphane_otomasyonu\\views\\istatistikler\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\views\\istatistikler\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|c:\\users\\ufukt\\desktop\\mvc_kutuphane_otomasyonu\\mvc_kutuphane_otomasyonu\\controllers\\istatistiklercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\controllers\\istatistiklercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E82062A9-E9C5-47D2-9336-5C61A6DE38AC}|MVC_Kutuphane_Otomasyonu.Entities\\MVC_Kutuphane_Otomasyonu.Entities.csproj|c:\\users\\ufukt\\desktop\\mvc_kutuphane_otomasyonu\\mvc_kutuphane_otomasyonu.entities\\dal\\uyelerdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E82062A9-E9C5-47D2-9336-5C61A6DE38AC}|MVC_Kutuphane_Otomasyonu.Entities\\MVC_Kutuphane_Otomasyonu.Entities.csproj|solutionrelative:mvc_kutuphane_otomasyonu.entities\\dal\\uyelerdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|c:\\users\\ufukt\\desktop\\mvc_kutuphane_otomasyonu\\mvc_kutuphane_otomasyonu\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|c:\\users\\ufukt\\desktop\\mvc_kutuphane_otomasyonu\\mvc_kutuphane_otomasyonu\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|c:\\users\\ufukt\\desktop\\mvc_kutuphane_otomasyonu\\mvc_kutuphane_otomasyonu\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|c:\\users\\ufukt\\desktop\\mvc_kutuphane_otomasyonu\\mvc_kutuphane_otomasyonu\\views\\shared\\_genellayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\mvc_kutuphane_otomasyonu\\views\\shared\\_genellayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\views\\shared\\_genellayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|c:\\users\\ufukt\\desktop\\mvc_kutuphane_otomasyonu\\mvc_kutuphane_otomasyonu\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\mvc_kutuphane_otomasyonu\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\mvc_kutuphane_otomasyonu\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|c:\\users\\ufukt\\desktop\\mvc_kutuphane_otomasyonu\\mvc_kutuphane_otomasyonu\\controllers\\kullanicilarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\controllers\\kullanicilarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|c:\\users\\ufukt\\desktop\\mvc_kutuphane_otomasyonu\\mvc_kutuphane_otomasyonu\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\mvc_kutuphane_otomasyonu\\views\\emanetkitaplar\\emanetlistesi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\views\\emanetkitaplar\\emanetlistesi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\mvc_kutuphane_otomasyonu\\views\\istatistikler\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\views\\istatistikler\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\mvc_kutuphane_otomasyonu\\controllers\\istatistiklercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\controllers\\istatistiklercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E82062A9-E9C5-47D2-9336-5C61A6DE38AC}|MVC_Kutuphane_Otomasyonu.Entities\\MVC_Kutuphane_Otomasyonu.Entities.csproj|C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\mvc_kutuphane_otomasyonu.entities\\dal\\kullanicihareketleridal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E82062A9-E9C5-47D2-9336-5C61A6DE38AC}|MVC_Kutuphane_Otomasyonu.Entities\\MVC_Kutuphane_Otomasyonu.Entities.csproj|solutionrelative:mvc_kutuphane_otomasyonu.entities\\dal\\kullanicihareketleridal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E82062A9-E9C5-47D2-9336-5C61A6DE38AC}|MVC_Kutuphane_Otomasyonu.Entities\\MVC_Kutuphane_Otomasyonu.Entities.csproj|C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\mvc_kutuphane_otomasyonu.entities\\dal\\uyelerdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E82062A9-E9C5-47D2-9336-5C61A6DE38AC}|MVC_Kutuphane_Otomasyonu.Entities\\MVC_Kutuphane_Otomasyonu.Entities.csproj|solutionrelative:mvc_kutuphane_otomasyonu.entities\\dal\\uyelerdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\mvc_kutuphane_otomasyonu\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\mvc_kutuphane_otomasyonu\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{65BFB2F8-A222-47A7-82F0-75601739275D}|MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.csproj|solutionrelative:mvc_kutuphane_otomasyonu\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,11 +58,124 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_GenelLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_GenelLayout.cshtml",
+              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_GenelLayout.cshtml",
+              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_GenelLayout.cshtml",
+              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_GenelLayout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-25T05:34:41.468Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAqwBEAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T06:05:14.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-25T06:05:31.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "KullanicilarController.cs",
+              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Controllers\\KullanicilarController.cs",
+              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Controllers\\KullanicilarController.cs",
+              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Controllers\\KullanicilarController.cs",
+              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Controllers\\KullanicilarController.cs",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAqwOAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:53:56.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_AdminLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_AdminLayout.cshtml",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAAANUAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T09:12:01.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmanetListesi.cshtml",
+              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\EmanetKitaplar\\EmanetListesi.cshtml",
+              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Views\\EmanetKitaplar\\EmanetListesi.cshtml",
+              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\EmanetKitaplar\\EmanetListesi.cshtml",
+              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Views\\EmanetKitaplar\\EmanetListesi.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAuwB0AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T08:24:14.292Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "KullaniciHareketleriDAL.cs",
+              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.Entities\\DAL\\KullaniciHareketleriDAL.cs",
+              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu.Entities\\DAL\\KullaniciHareketleriDAL.cs",
+              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.Entities\\DAL\\KullaniciHareketleriDAL.cs",
+              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu.Entities\\DAL\\KullaniciHareketleriDAL.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwCwAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T05:36:22.237Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Istatistikler\\Index.cshtml",
+              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Views\\Istatistikler\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Istatistikler\\Index.cshtml",
+              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Views\\Istatistikler\\Index.cshtml",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAAAJQAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-25T07:18:15.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IstatistiklerController.cs",
+              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Controllers\\IstatistiklerController.cs",
+              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Controllers\\IstatistiklerController.cs",
+              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Controllers\\IstatistiklerController.cs",
+              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Controllers\\IstatistiklerController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAgwEkAAACEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T07:18:02.646Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "UyelerDAL.cs",
               "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu.Entities\\DAL\\UyelerDAL.cs",
               "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu.Entities\\DAL\\UyelerDAL.cs",
@@ -54,38 +183,11 @@
               "RelativeToolTip": "MVC_Kutuphane_Otomasyonu.Entities\\DAL\\UyelerDAL.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T07:59:29.356Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T07:59:29.356Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Istatistikler\\Index.cshtml",
-              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Views\\Istatistikler\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Istatistikler\\Index.cshtml",
-              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Views\\Istatistikler\\Index.cshtml",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAuwHAAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T07:18:15.145Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IstatistiklerController.cs",
-              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Controllers\\IstatistiklerController.cs",
-              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Controllers\\IstatistiklerController.cs",
-              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Controllers\\IstatistiklerController.cs",
-              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Controllers\\IstatistiklerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T07:18:02.646Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "About.cshtml",
               "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Home\\About.cshtml",
               "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Views\\Home\\About.cshtml",
@@ -93,12 +195,11 @@
               "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Views\\Home\\About.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T06:29:38.812Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T06:29:38.812Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "Contact.cshtml",
               "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Home\\Contact.cshtml",
               "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Views\\Home\\Contact.cshtml",
@@ -106,47 +207,7 @@
               "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Views\\Home\\Contact.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T06:06:34.958Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T06:05:31.16Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAxwCIAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T06:05:14.616Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "_GenelLayout.cshtml",
-              "DocumentMoniker": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_GenelLayout.cshtml",
-              "RelativeDocumentMoniker": "MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_GenelLayout.cshtml",
-              "ToolTip": "C:\\Users\\ufukt\\Desktop\\MVC_Kutuphane_Otomasyonu\\MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_GenelLayout.cshtml",
-              "RelativeToolTip": "MVC_Kutuphane_Otomasyonu\\Views\\Shared\\_GenelLayout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T05:34:41.468Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T06:06:34.958Z"
             }
           ]
         }
