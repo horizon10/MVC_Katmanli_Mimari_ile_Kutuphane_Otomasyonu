@@ -6,212 +6,212 @@
 }
 @Html.Partial("_PartialDuyuru")
 
-
-<!-- jQuery önce -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<!-- Moment.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Use either Bootstrap 4 or 5, not both -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Senin AJAX Scriptin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
+    // Global variables and functions
+    $(document).ready(function () {
+        Listele();
+
+        // Handle modal hidden event
+        $('#dataModal').on('hidden.bs.modal', function () {
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+            Temizle();
+        });
+    });
+
     function Listele() {
-        $('#tbl tbody').html("");
+        $('#tbl tbody').empty();
         $.ajax({
-            type: 'get',
+            type: 'GET',
             url: '@Url.Action("DuyuruList", "Duyurular")',
             success: function (data) {
                 $.each(data, function (index, item) {
                     var milisecond = parseInt(item.Tarih.substr(6));
                     var formattedDate = moment(milisecond).format('DD.MM.YYYY HH:mm:ss');
-                    var row = '<tr><td><input type="checkbox" class="recordCheckBox" data-id="' + item.Id + '"/></td><th>' + item.Id + '</th><td>'
-                        + item.Baslik + '</td><td>'
-                        + item.Duyuru + '</td><td>'
-                        + item.Aciklama + '</td><td>'
-                        + formattedDate + '</td><td>'
-                        + '<a href=# class="btnDuzenle btn btn-warning btn-sm" data-id="'+item.Id+'"><i class="fa fa-edit"></i></a> '
-                        + '<a href="/Duyurular/Detay/' + item.Id + '" class="btn btn-info btn-sm"><i class="fa fa-info"></i></a> '
-                        + '<a href=# data-id="' + item.Id + '" class="btnSil btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>'
-                        + '</td></tr>';
+                    var row = `<tr>
+                        <td><input type="checkbox" class="recordCheckBox" data-id="${item.Id}"/></td>
+                        <th>${item.Id}</th>
+                        <td>${item.Baslik}</td>
+                        <td>${item.Duyuru}</td>
+                        <td>${item.Aciklama}</td>
+                        <td>${formattedDate}</td>
+                        <td>
+                            <a href="#" class="btnDuzenle btn btn-warning btn-sm" data-id="${item.Id}">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="#" data-id="${item.Id}" class="btnSil btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>`;
                     $('#tbl tbody').append(row);
                 });
             },
             error: function (error) {
-                console.log("AJAX HATASI:", error);
+                console.error("AJAX Error:", error);
+                Swal.fire('Hata!', 'Veriler yüklenirken bir hata oluştu.', 'error');
             }
         });
     }
 
-    $(document).ready(function () {
-        Listele();
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        $('#data-form').submit(function (e) {
-            e.preventDefault();
-            var formData = $(this).serialize();
-            $.ajax({
-                method: 'post',
-                url: '@Url.Action("DuyuruEkle")',
-                data: formData,
-                success: function (result) {
-                    if (result.success) {
-                        Listele();
-                        $('#dataModal').modal('hide');
-                        alert(result.message)
-                        Temizle();
-                    }
-                    else {
-                        $.each(result.errors, function (key, value) {
-                            $('[data-valmsg-for="' + key + '"]').text('');
-                            $('[data-valmsg-for="' + key + '"]').text(value[0]);
-                        });
-                    }
+    // Form submission handler
+    $('#data-form').submit(function (e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+
+        $.ajax({
+            method: 'POST',
+            url: '@Url.Action("DuyuruEkle")',
+            data: formData,
+            success: function (result) {
+                if (result.success) {
+                    $('#dataModal').modal('hide');
+                    Listele();
+                    Swal.fire('Başarılı!', result.message, 'success');
+                    Temizle();
+                } else {
+                    // Clear previous validation messages
+                    $('[data-valmsg-for]').text('');
+
+                    // Show new validation messages
+                    $.each(result.errors, function (key, value) {
+                        $(`[data-valmsg-for="${key}"]`).text(value[0]);
+                    });
+
+                    Swal.fire('Hata!', 'Lütfen formdaki hataları düzeltin.', 'error');
                 }
-            });
+            },
+            error: function (xhr) {
+                Swal.fire('Hata!', 'İşlem sırasında bir hata oluştu.', 'error');
+                console.error(xhr.responseText);
+            }
         });
     });
-</script>
-<script>
+
+    // Edit button handler
     $(document).on('click', '.btnDuzenle', function () {
         var Id = $(this).data('id');
         $.ajax({
-            url: '/Duyurular/DuyuruGetir/',
-            type: 'get',
+            url: '@Url.Action("DuyuruGetir", "Duyurular")',
+            type: 'GET',
             dataType: 'json',
             data: { Id: Id },
             success: function (result) {
-                $('#dataModal').modal('show');
+                $('#dataModalLabel').html('Duyuru Düzenleme');
                 $('#txtId').val(result.Id);
                 $('#txtBaslik').val(result.Baslik);
                 $('#txtDuyuru').val(result.Duyuru);
                 $('#txtAciklama').val(result.Aciklama);
+
                 var timestamp = parseInt(result.Tarih.replace("/Date(", "").replace(")/", ""));
                 var serverDate = new Date(timestamp);
                 var correctedDate = new Date(serverDate.getTime() - serverDate.getTimezoneOffset() * 60000);
                 var formattedDate = correctedDate.toISOString().slice(0, 16);
+
                 $('#txtTarih').val(formattedDate);
+                $('#dataModal').modal('show');
             },
             error: function () {
-                alert("Bir hata oluştu");
+                Swal.fire('Hata!', 'Duyuru bilgileri alınamadı.', 'error');
             }
         });
     });
-</script>
-<script>
+
+    // Delete button handler
+    $(document).on('click', '.btnSil', function (e) {
+        e.preventDefault();
+        var Id = $(this).data('id');
+        var deleteTR = $(this).closest('tr');
+
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Bu işlem geri alınamaz!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet, sil!',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("DuyuruSil", "Duyurular")',
+                    data: { Id: Id },
+                    success: function () {
+                        deleteTR.remove();
+                        Swal.fire('Silindi!', 'Duyuru başarıyla silindi.', 'success');
+                    },
+                    error: function () {
+                        Swal.fire('Hata!', 'Silme işlemi başarısız oldu.', 'error');
+                    }
+                });
+            }
+        });
+    });
+
+    // Select all checkbox handler
+    $(document).on('click', '#tdCheck', function () {
+        $('.recordCheckBox').prop('checked', $(this).is(':checked'));
+    });
+
+    // Delete selected handler
+    $(document).on('click', '#silButton', function (e) {
+        e.preventDefault();
+        var selectedIds = $('.recordCheckBox:checked').map(function() {
+            return $(this).data('id');
+        }).get();
+
+        if (selectedIds.length === 0) {
+            Swal.fire('Uyarı!', 'Lütfen silmek istediğiniz kayıtları seçin.', 'warning');
+            return;
+        }
+
+        Swal.fire({
+            title: 'Emin misiniz?',
+            html: `Seçilen <strong>${selectedIds.length}</strong> kayıt silinecek.<br>ID'ler: ${selectedIds.join(', ')}`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Evet, sil!',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("SeciliDuyuruSil", "Duyurular")',
+                    data: { selectedIds: selectedIds },
+                    success: function () {
+                        $('.recordCheckBox:checked').closest('tr').remove();
+                        Swal.fire('Silindi!', 'Seçilen kayıtlar başarıyla silindi.', 'success');
+                    },
+                    error: function () {
+                        Swal.fire('Hata!', 'Silme işlemi başarısız oldu.', 'error');
+                    }
+                });
+            }
+        });
+    });
+
+    // Clear form function
     function Temizle() {
         $('#data-form').trigger('reset');
         $('#dataModalLabel').html('Duyuru Ekleme Sayfası');
         $('#txtId').val('0');
+        $('[data-valmsg-for]').text('');
     }
-</script>
-<script>
+
+    // Add new function
     function Ekle() {
         Temizle();
+        $('#dataModal').modal('show');
     }
-</script>
-<script>
-    $(document).on('click', '.btnSil', function () {
-        var Id = $(this).data('id');
-        var deleteTR = $(this).closest('tr');
-        $.ajax({
-            type: 'get',
-            url: '/Duyurular/DuyuruGetir/',
-            data: { Id: Id },
-            success: function (result) {
-                var timestamp = parseInt(result.Tarih.replace("/Date(", "").replace(")/", ""));
-                var serverDate = new Date(timestamp);
-                var correctedDate = new Date(serverDate.getTime() - serverDate.getTimezoneOffset() * 60000);
-                var formattedDate = correctedDate.toISOString().slice(0, 16);
-
-                Swal.fire({
-                    title: 'Kayıt Silme!',
-                    html: '<b>Id:</b>' + result.Id + '<br/><b>Başlık:</b>' + result.Baslik +
-                        '<br/><b>Duyuru:</b>' + result.Duyuru + '<br/><b>Açıklama:</b>' + result.Aciklama + '<br/><b>Tarih:</b>' + formattedDate,
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Evet!',
-                    cancelButtonText: 'Hayır!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: 'post',
-                            url: '/Duyurular/DuyuruSil/',
-                            data: { Id: Id },
-                            success: function () {
-                                deleteTR.remove();
-                                Swal.fire(
-                                    'Silindi!',
-                                    'Kayıt silme işlemi başarıyla gerçekleşti.',
-                                    'success'
-                                )
-                            }, error: function () {
-
-                                alert('Silme işlemi başarısız oldu.');
-                            }
-                        });
-                    }
-                })
-
-            },
-            error: function () {
-                alert('Bir hata oluştu.');
-            }
-        });
-    });
-</script>
-<script>
-    $(document).on('click', '#tdCheck', function () {
-        if ($(this).is(':checked')) {
-            $('.recordCheckBox').prop('checked', true);
-        }
-        else {
-            $('.recordCheckBox').prop('checked', false);
-        }
-    });
-</script>
-<script>
-    $(document).on('click', '#silButton', function () {
-        var selectedIds = [];
-        $('.recordCheckBox:checked').each(function () {
-
-            selectedIds.push($(this).data('id'));
-        });
-        if (selectedIds.length > 0) {
-            Swal.fire({
-                title: 'Kayıt Silme!',
-                icon: 'warning',
-                html: 'Silinecek Kayıt No(lar):</br>' + selectedIds,
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Evet!',
-                cancelButtonText: 'Hayır!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: 'post',
-                        url: '/Duyurular/SeciliDuyuruSil/',
-                        data: { selectedIds: selectedIds },
-                        success: function () {
-                            $('.recordCheckBox:checked').closest('tr').remove();
-                            Swal.fire(
-                                'Silindi!',
-                                'Kayıt silme işlemi başarıyla gerçekleşti.',
-                                'success'
-                            )
-                        }, error: function () {
-
-                            alert('Silme işlemi başarısız oldu.');
-                        }
-                    });
-                }
-            })
-        }
-    });
 </script>

@@ -17,8 +17,13 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
         IletisimDAL iletisimDAL=new IletisimDAL();
         public ActionResult Index()
         {
+            var kitaplar = context.Kitaplar.Include("KitapTurleri").ToList();
+            var duyurular = context.Duyurular.OrderByDescending(x => x.Tarih).ToList();
+            ViewBag.KitaplarListesi = kitaplar;
+            ViewBag.DuyurularListesi = duyurular;
             return View();
         }
+
 
         public ActionResult About()
         {

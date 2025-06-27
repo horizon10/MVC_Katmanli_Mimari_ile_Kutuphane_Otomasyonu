@@ -1,15 +1,13 @@
 ﻿@model MVC_Kutuphane_Otomasyonu.Entities.Model.Duyurular
 
-
-
-<div class="rom">
+<div class="row">
+    <!-- Fixed typo from "rom" to "row" -->
     <div class="col-lg">
         <div class="form-group">
-            <button class="btn btn-danger" type="submit" id="silButton">Seçili Sil</button>
+            <button class="btn btn-danger" type="button" id="silButton">Seçili Sil</button> <!-- Added type="button" -->
         </div>
         <div class="ibox">
             <div class="ibox-head">
-
                 Duyuru Listesi
             </div>
             <div class="ibox-body">
@@ -33,61 +31,48 @@
                         Yeni Duyuru
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
-
 </div>
 
-
-
-<div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- Modal Structure -->
+<div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="dataModalLabel">Duyuru Ekleme Sayfası</h3>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="data-form">
                     <div id="textSil">
                         <div class="form-group">
-                            @Html.HiddenFor(a => a.Id, new { @class = "form-control", placeholder = "Id", id = "txtId", Value = 0 })
-
-
+                            @Html.HiddenFor(a => a.Id, new { @class = "form-control", id = "txtId", Value = 0 })
                         </div>
-                        @Html.TextBoxFor(a => a.Baslik, new { @class = "form-control", placeholder = "Başlık", id = "txtBaslik" })
-                        @Html.ValidationMessageFor(x => x.Baslik, "", new { @class = "text-danger" })
-
-
+                        <div class="form-group">
+                            @Html.TextBoxFor(a => a.Baslik, new { @class = "form-control", placeholder = "Başlık", id = "txtBaslik" })
+                            @Html.ValidationMessageFor(x => x.Baslik, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                     <div class="form-group">
                         @Html.TextBoxFor(a => a.Duyuru, new { @class = "form-control", placeholder = "Duyuru", id = "txtDuyuru" })
                         @Html.ValidationMessageFor(x => x.Duyuru, "", new { @class = "text-danger" })
-
-
                     </div>
                     <div class="form-group">
                         @Html.TextAreaFor(a => a.Aciklama, new { @class = "form-control", placeholder = "Açıklama", id = "txtAciklama" })
                         @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "text-danger" })
-
                     </div>
                     <div class="form-group">
                         @Html.TextBoxFor(a => a.Tarih, new { @class = "form-control", type = "datetime-local", id = "txtTarih" })
-                        @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "text-danger" })
-
-
+                        @Html.ValidationMessageFor(x => x.Tarih, "", new { @class = "text-danger" }) <!-- Fixed validation message for Tarih -->
                     </div>
-                    <div class="form-group">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
                         <button type="submit" class="btn btn-primary">Kaydet</button>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
-
     </div>
 </div>
-

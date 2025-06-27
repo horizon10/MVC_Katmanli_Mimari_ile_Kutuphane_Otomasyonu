@@ -36,6 +36,28 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
             rollerDAL.Save(context);
             return RedirectToAction("Index");
         }
+        public ActionResult Duzenle(int? id)
+        {
+            if(id == null) 
+                return HttpNotFound();
+
+            var model = rollerDAL.GetById(context, id);
+            if(model== null)
+                return HttpNotFound("Rol Bulunamadı.");
+
+            return View(model); 
+        }
+        [HttpPost,ValidateAntiForgeryToken]
+        public ActionResult Duzenle(Roller entity)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(entity);
+            }
+            rollerDAL.InsertorUpdate(context, entity);
+            rollerDAL.Save(context);
+            return RedirectToAction("Index");
+        }
 
         public ActionResult Sil(int id) 
         {
