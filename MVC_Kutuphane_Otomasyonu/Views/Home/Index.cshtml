@@ -1,59 +1,64 @@
-﻿@{
+﻿@model List<MVC_Kutuphane_Otomasyonu.Entities.Model.Kitaplar>
+@{
     Layout = "~/Views/Shared/_GenelLayout.cshtml";
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Ana Sayfa";
 }
 
-<main class="container mt-4">
-
-    <!-- DUYURULAR -->
-    <section class="mb-5">
-        <h2 class="text-center mb-4">📢 Duyurular</h2>
-        <div class="list-group">
-            @if (ViewBag.DuyurularListesi != null)
-            {
-                foreach (var duyuru in ViewBag.DuyurularListesi as List<MVC_Kutuphane_Otomasyonu.Entities.Model.Duyurular>)
-                {
-                    <div class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1 font-weight-bold">@duyuru.Baslik</h5>
-                            <small class="text-muted">@duyuru.Tarih.ToString("dd.MM.yyyy")</small>
-                        </div>
-                        <p class="mb-1">@duyuru.Duyuru</p>
-                    </div>
-                }
-            }
-            else
-            {
-                <div class="alert alert-info">Henüz bir duyuru bulunmamaktadır.</div>
-            }
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="display-5 fw-bold text-primary">Kütüphane Kataloğu</h1>
+            <p class="lead">Keşfedilecek binlerce kitap sizi bekliyor</p>
         </div>
-    </section>
+    </div>
 
-    <!-- KİTAPLAR -->
-    <section>
-        <h2 class="text-center mb-4">📚 Kitaplar</h2>
-        <div class="row">
-            @if (ViewBag.KitaplarListesi != null)
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var kitap in Model)
             {
-                foreach (var kitap in ViewBag.KitaplarListesi as List<MVC_Kutuphane_Otomasyonu.Entities.Model.Kitaplar>)
-                {
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="card-body">
-                                <h5 class="card-title text-primary">@kitap.KitapAdi</h5>
-                                <p class="card-text"><strong>Yazar:</strong> @kitap.YazarAdi</p>
-                                <p class="card-text"><strong>Tür:</strong> @kitap.KitapTurleri.KitapTuru</p>
-                            </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-img-top bg-light text-center py-4">
+                            <i class="fas fa-book-open fa-4x text-primary"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title text-primary">@kitap.KitapAdi</h3>
+                            <p class="card-text"><strong><i class="fas fa-user-edit me-2"></i>Yazar:</strong> @kitap.YazarAdi</p>
+                            <p class="card-text"><strong><i class="fas fa-tag me-2"></i>Tür:</strong> @(kitap.KitapTurleri?.KitapTuru ?? "Belirtilmemiş")</p>
                         </div>
                     </div>
-                }
-            }
-            else
-            {
-                <div class="col-12">
-                    <div class="alert alert-warning">Gösterilecek kitap bulunamadı.</div>
                 </div>
             }
-        </div>
-    </section>
-</main>
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-warning text-center py-4">
+                    <i class="fas fa-exclamation-circle fa-2x me-2"></i>
+                    <h4 class="d-inline">Gösterilecek kitap bulunamadı</h4>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Font Awesome ikonları için -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 10px;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+    .card-img-top {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+</style>

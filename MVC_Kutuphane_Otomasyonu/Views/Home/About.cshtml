@@ -1,23 +1,164 @@
 ﻿@model List<MVC_Kutuphane_Otomasyonu.Entities.Model.Hakkimizda>
 @{
     Layout = "~/Views/Shared/_GenelLayout.cshtml";
-    ViewBag.Title = "About";
+    ViewBag.Title = "Hakkımızda";
 }
-<main aria-labelledby="title">
-    <h2 id="title">HAKKIMIZDA</h2>
 
-    <p>
-        <div>
-            <table class="table-bordered table-striped">
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            @item.Icerik
-                        </tr>
-                    }
-                </tbody>
-            </table>
+<div class="about-page">
+    <!-- Hero Section -->
+    <section class="hero-section bg-primary text-white py-5">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Kütüphanemiz Hakkında</h1>
+                    <p class="lead">Bilgiye ulaşmanın en kolay yolu</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                         alt="Kütüphane görseli" class="img-fluid rounded shadow-lg">
+                </div>
+            </div>
         </div>
-    </p>
-</main>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Misyonumuz & Vizyonumuz</h2>
+                    <div class="title-divider"></div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="about-content">
+                                    @Html.Raw(item.Icerik)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <h3 class="text-primary fw-bold">100+</h3>
+                        <p class="mb-0">Kitap Çeşidi</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <h3 class="text-primary fw-bold">200+</h3>
+                        <p class="mb-0">Üye Sayısı</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <h3 class="text-primary fw-bold">7/24</h3>
+                        <p class="mb-0">Online Erişim</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Ekibimiz</h2>
+                    <div class="title-divider"></div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" class="card-img-top" alt="Ekip üyesi">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Ayşe Yılmaz</h5>
+                            <p class="text-muted">Kütüphane Müdürü</p>
+                            <p class="card-text">15 yıllık kütüphane deneyimi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" class="card-img-top" alt="Ekip üyesi">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Mehmet Kaya</h5>
+                            <p class="text-muted">Katalog Sorumlusu</p>
+                            <p class="card-text">Kitap kataloglama uzmanı</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" class="card-img-top" alt="Ekip üyesi">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Zeynep Demir</h5>
+                            <p class="text-muted">Kullanıcı Hizmetleri</p>
+                            <p class="card-text">Üye ilişkileri yöneticisi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+        margin-bottom: 3rem;
+    }
+
+    .section-title {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 15px;
+    }
+
+    .title-divider {
+        width: 80px;
+        height: 3px;
+        background: #0d6efd;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+
+    .about-content {
+        line-height: 1.8;
+    }
+
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+
+    .card {
+        transition: transform 0.3s ease;
+        border-radius: 10px;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+    .img-fluid {
+        max-height: 350px;
+        object-fit: cover;
+    }
+</style>

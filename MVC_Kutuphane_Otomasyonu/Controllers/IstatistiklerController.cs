@@ -1,5 +1,6 @@
 ﻿using ClosedXML.Excel;
 using MVC_Kutuphane_Otomasyonu.Entities.DAL;
+using MVC_Kutuphane_Otomasyonu.Entities.Mapping;
 using MVC_Kutuphane_Otomasyonu.Entities.Model.Context;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
         KullanicilarDAL kullanicilarDAL=new KullanicilarDAL();
         UyelerDAL uyelerDAL=new UyelerDAL();
         EmanetKitaplarDAL emanetKitaplarDAL=new EmanetKitaplarDAL();
+        KitapTurleriDAL kitapTurleriDAL=new KitapTurleriDAL();
         // GET: Istatistikler
         public ActionResult Index()
         {
@@ -41,7 +43,25 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
             ViewBag.AylikVeriler=kullaniciHareketleriDAL.AylikVeriler;
             ViewBag.ToplamKHGSayisi=kullaniciHareketleriDAL.ToplamKHGSayisi;
             ViewBag.AltiAyToplamKHGSayisi=kullaniciHareketleriDAL.AltiAyToplamKHGSayisi;
-           
+
+            var turIstatistik = kitapTurleriDAL.GetKitapTuruIstatistik();
+            ViewBag.KitapTurIstatistik = turIstatistik;
+
+            var enCokKitap = emanetKitaplarDAL.EnCokEmanetEdilenKitap();
+            var enAzKitap = emanetKitaplarDAL.EnAzEmanetEdilenKitap();
+
+            var enCok = emanetKitaplarDAL.EnCokEmanetEdilenKitap();
+            var enAz = emanetKitaplarDAL.EnAzEmanetEdilenKitap();
+
+            ViewBag.EnCokEmanetKitap = $"{enCok.KitapAdi} ({enCok.KitapTuru})";
+            ViewBag.EnCokEmanetSayi = enCok.Toplam;
+
+            ViewBag.EnAzEmanetKitap = $"{enAz.KitapAdi} ({enAz.KitapTuru})";
+            ViewBag.EnAzEmanetSayi = enAz.Toplam;
+
+
+
+
             return View();
         }
         public ActionResult ExceleAktar()

@@ -5347,6 +5347,7 @@
     <Content Include="Views\Istatistikler\Index.cshtml" />
     <Content Include="Views\EmanetKitaplar\EmanetListesi.cshtml" />
     <Content Include="Views\Roller\Duzenle.cshtml" />
+    <Content Include="Views\Home\Duyurular.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

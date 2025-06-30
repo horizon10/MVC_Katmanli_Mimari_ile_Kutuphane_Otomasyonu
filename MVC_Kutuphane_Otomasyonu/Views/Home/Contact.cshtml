@@ -2,46 +2,105 @@
 
 @{
     Layout = "~/Views/Shared/_GenelLayout.cshtml";
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "İletişim";
 }
-<div class="container">
-    <br />
-    <h3>İLETİŞİM</h3>
-    @if (TempData["Message"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["Message"]
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0 text-center"><i class="fas fa-envelope me-2"></i> BİZE ULAŞIN</h3>
+                </div>
+                <div class="card-body p-5">
+                    @if (TempData["Message"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show">
+                            @TempData["Message"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-4">
+                            <label for="AdiSoyadi" class="form-label fw-bold">Adı Soyadı</label>
+                            @Html.TextBoxFor(x => x.AdiSoyadi, new { @class = "form-control form-control-lg", placeholder = "Adınız ve soyadınız" })
+                            @Html.ValidationMessageFor(x => x.AdiSoyadi, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="Email" class="form-label fw-bold">Email</label>
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control form-control-lg", placeholder = "email@example.com", type = "email" })
+                            @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="Baslik" class="form-label fw-bold">Başlık</label>
+                            @Html.TextBoxFor(x => x.Baslik, new { @class = "form-control form-control-lg", placeholder = "Konu başlığı" })
+                            @Html.ValidationMessageFor(x => x.Baslik, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="Mesaj" class="form-label fw-bold">Mesaj</label>
+                            @Html.TextAreaFor(x => x.Mesaj, new { @class = "form-control form-control-lg", rows = "4", placeholder = "Mesajınızı buraya yazın" })
+                            @Html.ValidationMessageFor(x => x.Mesaj, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="Aciklama" class="form-label fw-bold">Açıklama</label>
+                            @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control form-control-lg", rows = "3", placeholder = "Ek açıklamalar" })
+                            @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg py-3">
+                                <i class="fas fa-paper-plane me-2"></i> GÖNDER
+                            </button>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer bg-light text-center py-3">
+                    <p class="mb-0">En kısa sürede size dönüş yapacağız.</p>
+                </div>
+            </div>
         </div>
-    }
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-group">
-            <b>Adı Soyadı</b>
-            @Html.TextBoxFor(x => x.AdiSoyadi, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.AdiSoyadi, "", new { @class = "tex-danger" })
-        </div>
-        <div class="form-group">
-            <b>Email</b>
-            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.Email, "", new { @class = "tex-danger" })
-        </div>
-        <div class="form-group">
-            <b>Başlık</b>
-            @Html.TextBoxFor(x => x.Baslik, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.Baslik, "", new { @class = "tex-danger" })
-        </div>
-        <div class="form-group">
-            <b>Mesaj</b>
-            @Html.TextAreaFor(x => x.Mesaj, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.Mesaj, "", new { @class = "tex-danger" })
-        </div>
-        <div class="form-group">
-            <b>Açıklama</b>
-            @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "tex-danger" })
-        </div>
-        <button type="submit" class="btn btn-primary">Gönder</button>
-    }
-    <br />
+    </div>
 </div>
+
+<!-- Font Awesome ikonları için -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        border-radius: 15px;
+        border: none;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 12px 15px;
+    }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+    .btn-primary {
+        background-color: #0d6efd;
+        border: none;
+        border-radius: 10px;
+        transition: all 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-2px);
+        }
+</style>

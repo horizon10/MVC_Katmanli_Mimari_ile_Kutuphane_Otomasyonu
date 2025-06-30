@@ -1,169 +1,187 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<body>
-    <div class="page-content fade-in-up">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="ibox bg-success color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">@ViewBag.GirisSayisi</h2>
-                        <div class="m-b-5">En Çok Giriş Yapan Kullanıcı</div><i class="fa fa-user-circle widget-stat-icon"></i>
-                        <div><i class="fa fa-level m-r-5"></i><small>@ViewBag.KullaniciAdi</small></div>
-                    </div>
+
+<div class="page-content fade-in-up">
+    <!-- Bilgi Kutuları -->
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="ibox bg-success color-white widget-stat">
+                <div class="ibox-body">
+                    <h2 class="m-b-5 font-strong">@ViewBag.GirisSayisi</h2>
+                    <div class="m-b-5">En Çok Giriş Yapan Kullanıcı</div><i class="fa fa-user-circle widget-stat-icon"></i>
+                    <div><small>@ViewBag.KullaniciAdi</small></div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ibox bg-info color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">@ViewBag.EnCokSayi</h2>
-                        <div class="m-b-5">En Çok Kitap Okuyan Üye</div><i class="fa fa-address-book widget-stat-icon"></i>
-                        <div><i class="fa fa-level m-r-5"></i><small>@ViewBag.EnCokUye</small></div>
-                    </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="ibox bg-info color-white widget-stat">
+                <div class="ibox-body">
+                    <h2 class="m-b-5 font-strong">@ViewBag.EnCokSayi</h2>
+                    <div class="m-b-5">En Çok Kitap Okuyan Üye</div><i class="fa fa-address-book widget-stat-icon"></i>
+                    <div><small>@ViewBag.EnCokUye</small></div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ibox bg-warning color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">@ViewBag.EnAzSayi</h2>
-                        <div class="m-b-5">En Az Kitap Okuyan Üye</div><i class="fa fa-book widget-stat-icon"></i>
-                        <div><i class="fa fa-level m-r-5"></i><small>@ViewBag.EnAzUye</small></div>
-                    </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="ibox bg-warning color-white widget-stat">
+                <div class="ibox-body">
+                    <h2 class="m-b-5 font-strong">@ViewBag.EnAzSayi</h2>
+                    <div class="m-b-5">En Az Kitap Okuyan Üye</div><i class="fa fa-book widget-stat-icon"></i>
+                    <div><small>@ViewBag.EnAzUye</small></div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="ibox bg-primary color-white widget-stat">
+                <div class="ibox-body">
+                    <h2 class="m-b-5 font-strong">@ViewBag.EnCokEmanetSayi</h2>
+                    <div class="m-b-5">En Çok Emanet Edilen Kitap</div><i class="fa fa-book widget-stat-icon"></i>
+                    <div><small>@ViewBag.EnCokEmanetKitap</small></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="ibox bg-secondary color-white widget-stat">
+                <div class="ibox-body">
+                    <h2 class="m-b-5 font-strong">@ViewBag.EnAzEmanetSayi</h2>
+                    <div class="m-b-5">En Az Emanet Edilen Kitap</div><i class="fa fa-book widget-stat-icon"></i>
+                    <div><small>@ViewBag.EnAzEmanetKitap</small></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-6">
+            <a href="@Url.Action("Index", "Kullanicilar")" style="text-decoration: none;">
                 <div class="ibox bg-danger color-white widget-stat">
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">@ViewBag.Count</h2>
-                        <div class="m-b-5">Kullanıcı Sayisi</div><i class="ti-user widget-stat-icon"></i>
-                        <div><i class="fa fa-level m-r-5"></i><small></small></div>
+                        <div class="m-b-5">Kullanıcı Sayısı</div><i class="ti-user widget-stat-icon"></i>
+                        <div><small>Kullanıcılara Git</small></div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="ibox">
-                    <div class="ibox-body">
-                        <div class="flexbox mb-4">
-                            <div>
-                                <h3 class="m-0">İstatistikler</h3>
-                                <div>Analizler</div>
-                            </div>
-                            <div class="d-inline-flex">
-                                <div class="px-3" style="border-right: 1px solid rgba(0,0,0,.1);">
-                                    <div class="text-muted">TOPLAM GİRİŞ SAYISI</div>
-                                    <div>
-                                        <span class="h2 m-0">@ViewBag.ToplamKHGSayisi</span>
-                                        <span class="text-success ml-2"><i class="fa fa-level"></i> </span>
-                                    </div>
-                                </div>
-                                <div class="px-3">
-                                    <div class="text-muted">SON ALTI AY GİRİŞ SAYISI</div>
-                                    <div>
-                                        <span class="h2 m-0">@ViewBag.AltiAyToplamKHGSayisi</span>
-                                        <span class="text-warning ml-2"><i class="fa fa-level"></i></span>
-                                    </div>
-                                </div>
-                            </div>
+    </div>
+
+    <!-- Grafikler -->
+    <div class="row">
+        <!-- Giriş Sayısı Line Chart -->
+        <div class="col-lg-8">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <h5 class="ibox-title">Aylık Kullanıcı Giriş Sayısı</h5>
+                </div>
+                <div class="ibox-body">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div>
+                            <span class="text-muted">Toplam Giriş:</span>
+                            <strong>@ViewBag.ToplamKHGSayisi</strong>
                         </div>
                         <div>
-                            <canvas id="grafikHareket" style="height:260px;"></canvas>
+                            <span class="text-muted">Son 6 Ay:</span>
+                            <strong>@ViewBag.AltiAyToplamKHGSayisi</strong>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="ibox">
-                    <div class="ibox-head">
-                        <div class="ibox-title">Statistics</div>
-                    </div>
-                    <div class="ibox-body">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <canvas id="dairesel_grafik" style="height:160px;"></canvas>
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
+                    <canvas id="grafikHareket" height="160"></canvas>
                 </div>
             </div>
         </div>
 
-        <script>
-            var uyeKitap =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.UyeKitapModel));
-            var labels = uyeKitap.map(x => `${x.AdiSoyadi} ${x.Yuzde.toFixed(2)} %`
-);
-            var data = uyeKitap.map(x => x.OkulKitapSayisi);
-
-            var grph = document.getElementById('dairesel_grafik').getContext('2d');
-            new Chart(grph, {
-                type: 'pie',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Okunan Kitap Sayısı',
-                        data: data,
-                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                        borderColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                        borderWidth: 1
-                    }],
-                },
-                options: {
-                    responsive:true
-                }
-            });
-        </script>
-       
-        <style>
-            .visitors-table tbody tr td:last-child {
-                display: flex;
-                align-items: center;
-            }
-
-            .visitors-table .progress {
-                flex: 1;
-            }
-
-            .visitors-table .progress-parcent {
-                text-align: right;
-                margin-left: 10px;
-            }
-        </style> 
-        <script>
-            var aylikVeri =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.AylikVeriler));
-            var labels = aylikVeri.map(data => `${data.Ay}/${data.yil}`);
-            var hareketSayilari = aylikVeri.map(data => data.HareketSay);
-
-            var grafik = document.getElementById('grafikHareket').getContext('2d');
-
-            new Chart(grafik, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Kullanıcı Girişleri',
-                        data: hareketSayilari,
-                        backgroundColor: 'rgba(54,162,235,0.2)',
-                        borderColor: 'rgba(54,162,235,1)',
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        </script>
+        <!-- Pasta Grafikler -->
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <h5 class="ibox-title">İstatistik Dağılımları</h5>
+                </div>
+                <div class="ibox-body">
+                    <p class="text-center">Kitap Okuma Dağılımı</p>
+                    <canvas id="dairesel_grafik" height="50"></canvas>
+                    <hr />
+                    <p class="text-center mt-3">Kitap Türlerine Göre Dağılım</p>
+                    <canvas id="kitapTurChart" height="50"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
+</div>
 
+<!-- Chart.js Scripts -->
+<script>
+    var uyeKitap = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.UyeKitapModel));
+    var labelsUye = uyeKitap.map(x => `${x.AdiSoyadi} ${x.Yuzde.toFixed(2)} %`);
+    var dataUye = uyeKitap.map(x => x.OkulKitapSayisi);
 
+    var grph = document.getElementById('dairesel_grafik').getContext('2d');
+    new Chart(grph, {
+        type: 'pie',
+        data: {
+            labels: labelsUye,
+            datasets: [{
+                data: dataUye,
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+
+    var aylikVeri = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.AylikVeriler));
+    var labelsAylik = aylikVeri.map(data => `${data.Ay}/${data.yil}`);
+    var hareketSayilari = aylikVeri.map(data => data.HareketSay);
+
+    var grafik = document.getElementById('grafikHareket').getContext('2d');
+    new Chart(grafik, {
+        type: 'line',
+        data: {
+            labels: labelsAylik,
+            datasets: [{
+                label: 'Kullanıcı Girişleri',
+                data: hareketSayilari,
+                backgroundColor: 'rgba(54,162,235,0.2)',
+                borderColor: 'rgba(54,162,235,1)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    var kitapTurVerisi = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.KitapTurIstatistik));
+    var ctxTur = document.getElementById("kitapTurChart").getContext("2d");
+    new Chart(ctxTur, {
+        type: 'pie',
+        data: {
+            labels: kitapTurVerisi.map(x => x.TurAdi + " (" + x.Adet + ")"),
+            datasets: [{
+                data: kitapTurVerisi.map(x => x.Adet),
+                backgroundColor: [
+                    '#FF6384', '#36A2EB', '#FFCE56',
+                    '#4BC0C0', '#9966FF', '#FF9F40',
+                    '#F67280', '#C06C84', '#8E44AD'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' },
+                title: {
+                    display: false
+                }
+            }
+        }
+    });
+</script>

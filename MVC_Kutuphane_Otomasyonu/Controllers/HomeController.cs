@@ -17,11 +17,21 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
         IletisimDAL iletisimDAL=new IletisimDAL();
         public ActionResult Index()
         {
-            var kitaplar = context.Kitaplar.Include("KitapTurleri").ToList();
-            var duyurular = context.Duyurular.OrderByDescending(x => x.Tarih).ToList();
-            ViewBag.KitaplarListesi = kitaplar;
-            ViewBag.DuyurularListesi = duyurular;
-            return View();
+            try
+            {
+                var kitaplar = context.Kitaplar.Include("KitapTurleri").ToList();
+                if (kitaplar == null || !kitaplar.Any())
+                {
+                    // Boş liste oluşturarak view'ın çalışmasını sağla
+                    kitaplar = new List<Kitaplar>();
+                }
+                return View(kitaplar);
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda boş liste döndür
+                return View(new List<Kitaplar>());
+            }
         }
 
 
@@ -29,6 +39,11 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
         {
             var model= hakkimizdaDAL.GetAll(context);
             return View(model);
+        }
+        public ActionResult Duyurular()
+        {
+            var duyurular = context.Duyurular.OrderByDescending(x => x.Tarih).ToList();
+            return View(duyurular);
         }
 
         public ActionResult Contact()
