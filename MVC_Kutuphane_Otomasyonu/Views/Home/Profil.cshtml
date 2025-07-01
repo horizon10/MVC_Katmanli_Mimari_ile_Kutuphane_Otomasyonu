@@ -1,0 +1,90 @@
+﻿@model MVC_Kutuphane_Otomasyonu.Entities.Model.Uyeler
+@{
+    ViewBag.Title = "Profilim";
+    Layout = "~/Views/Shared/_GenelLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Profil Bilgilerim</h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Profil", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="text-center mb-4">
+                            <img src="@Url.Content(Model.ResimYolu ?? "~/Content/default-avatar.png")" class="rounded-circle" width="120" height="120" alt="Profil Resmi" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(m => m.AdiSoyadi)
+                            @Html.TextBoxFor(m => m.AdiSoyadi, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.AdiSoyadi, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(m => m.Email)
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.Label("Yeni Şifre (değiştirmek isterseniz)")
+                            <input type="password" name="YeniSifre" class="form-control" />
+                            @if (ViewBag.SifreHata != null)
+                            {
+                                <span class="text-danger">@ViewBag.SifreHata</span>
+                            }
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(m => m.Telefon)
+                            @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Telefon, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(m => m.Adres)
+                            @Html.TextAreaFor(m => m.Adres, new { @class = "form-control", rows = 3 })
+                            @Html.ValidationMessageFor(m => m.Adres, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.Label("Profil Resmini Güncelle")
+                            <input type="file" name="Resim" class="form-control" accept="image/*" />
+                            @if (ViewBag.ResimHata != null)
+                            {
+                                <span class="text-danger">@ViewBag.ResimHata</span>
+                            }
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary me-md-2">
+                                <i class="fas fa-home"></i> Anasayfaya Dön
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Bilgilerimi Güncelle
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+    .card {
+        border-radius: 10px;
+    }
+
+    .text-danger {
+        font-size: 0.875em;
+    }
+</style>

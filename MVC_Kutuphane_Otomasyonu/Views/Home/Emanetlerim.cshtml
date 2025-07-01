@@ -1,0 +1,35 @@
+﻿@model List<MVC_Kutuphane_Otomasyonu.Entities.Model.EmanetKitaplar>
+@{
+    ViewBag.Title = "Emanetlerim";
+    Layout = "~/Views/Shared/_GenelLayout.cshtml";
+}
+
+<h2 class="my-3">Emanet Aldığınız Kitaplar</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Kitap Adı</th>
+                <th>Kitabı Aldığınız Tarih</th>
+                <th>Kalan Gün (30 Gün Süre)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var gunKalan = 30 - (DateTime.Now - item.KitapAldigiTarihi).Days;
+                <tr class="@(gunKalan <= 5 ? "table-danger" : "")">
+                    <td>@item.Kitaplar.KitapAdi</td>
+                    <td>@item.KitapAldigiTarihi.ToString("dd.MM.yyyy")</td>
+                    <td>@(gunKalan > 0 ? gunKalan.ToString() + " gün" : "Süre doldu!")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">Şu anda emanet aldığınız kitap bulunmamaktadır.</div>
+}

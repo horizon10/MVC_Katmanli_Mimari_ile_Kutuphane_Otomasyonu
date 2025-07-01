@@ -19,7 +19,9 @@ namespace MVC_Kutuphane_Otomasyonu.Entities.Model
         public string Email { get; set; }
         public string ResimYolu { get; set; }
         public int OkulKitapSayisi { get; set; }
-        
+        public string Sifre { get; set; }
+
+
         public DateTime KayıtTarihi { get; set; }
 
         public List<EmanetKitaplar> EmanetKitaplar { get; set; }

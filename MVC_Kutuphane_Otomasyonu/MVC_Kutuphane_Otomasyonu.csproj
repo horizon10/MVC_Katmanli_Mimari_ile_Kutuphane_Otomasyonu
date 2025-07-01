@@ -5348,6 +5348,11 @@
     <Content Include="Views\EmanetKitaplar\EmanetListesi.cshtml" />
     <Content Include="Views\Roller\Duzenle.cshtml" />
     <Content Include="Views\Home\Duyurular.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\KitapDetay.cshtml" />
+    <Content Include="Views\Home\Profil.cshtml" />
+    <Content Include="Views\Home\Emanetlerim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

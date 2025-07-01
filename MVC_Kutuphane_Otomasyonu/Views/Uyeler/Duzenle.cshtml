@@ -46,6 +46,11 @@
                         @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                     </div>
+                    <div class="form-group">
+                        @Html.DisplayNameFor(x => x.Sifre)
+                        @Html.TextBoxFor(x => x.Sifre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Sifre, "", new { @class = "text-danger" })
+                    </div>
 
                     <div class="form-group">
                         @Html.DisplayNameFor(x => x.OkulKitapSayisi)

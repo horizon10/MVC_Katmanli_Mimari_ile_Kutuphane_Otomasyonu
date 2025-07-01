@@ -1,0 +1,44 @@
+﻿@model MVC_Kutuphane_Otomasyonu.Entities.Model.Uyeler
+@{
+    ViewBag.Title = "Kayıt Ol";
+    Layout = "~/Views/Shared/_GenelLayout.cshtml";
+}
+
+<h2>Yeni Üyelik</h2>
+
+@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.AdiSoyadi)
+        @Html.TextBoxFor(x => x.AdiSoyadi, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", type = "email" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Şifre")
+        @Html.Password("Sifre", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Telefon)
+        @Html.TextBoxFor(x => x.Telefon, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Adres)
+        @Html.TextAreaFor(x => x.Adres, new { @class = "form-control", rows = 3 })
+    </div>
+
+    <div class="form-group">
+        <label for="Resim">Profil Resmi</label>
+        <input type="file" name="Resim" class="form-control" accept="image/*" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+}

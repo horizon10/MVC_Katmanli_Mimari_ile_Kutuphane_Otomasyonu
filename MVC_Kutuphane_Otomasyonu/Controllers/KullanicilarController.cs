@@ -14,7 +14,7 @@ using System.Web.Security;
 namespace MVC_Kutuphane_Otomasyonu.Controllers
 {
     //denerken sürekli giriş yapmamak adına yorum satırına aldım 
-    [Authorize(Roles="Admin,Moderatör")] 
+    [Authorize(Roles="Admin")] 
     //[AllowAnonymous]
     public class KullanicilarController : Controller
     {
@@ -128,7 +128,7 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
                 string aciklama = model.KullaniciAdi + " kullanıcısı sisteme giriş yaptı";
                 KullaniciHareketleri(islemYapanId, islemYapanId, aciklama);
 
-                return RedirectToAction("Index", "KitapTurleri");
+                return RedirectToAction("Index", "Istatistikler");
             }
             ViewBag.error = "Kullanıcı adı veya şifre yanlış";
             return View();

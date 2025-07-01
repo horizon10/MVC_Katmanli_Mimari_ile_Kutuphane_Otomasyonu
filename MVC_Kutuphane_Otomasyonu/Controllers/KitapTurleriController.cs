@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace MVC_Kutuphane_Otomasyonu.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator")]
     public class KitapTurleriController : Controller
     {
         KutuphaneContext context=new KutuphaneContext();

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace MVC_Kutuphane_Otomasyonu.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class UyelerController : Controller
     {
         // GET: Uyeler
