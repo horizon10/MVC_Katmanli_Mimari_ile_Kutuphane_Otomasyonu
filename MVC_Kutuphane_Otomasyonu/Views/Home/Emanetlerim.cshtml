@@ -13,17 +13,33 @@
             <tr>
                 <th>Kitap Adı</th>
                 <th>Kitabı Aldığınız Tarih</th>
+                <th>Son Teslim Tarihi</th>
                 <th>Kalan Gün (30 Gün Süre)</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                var gunKalan = 30 - (DateTime.Now - item.KitapAldigiTarihi).Days;
+                var teslimTarihi = item.KitapAldigiTarihi.AddDays(30);
+                var gunKalan = (teslimTarihi - DateTime.Now).Days;
                 <tr class="@(gunKalan <= 5 ? "table-danger" : "")">
                     <td>@item.Kitaplar.KitapAdi</td>
                     <td>@item.KitapAldigiTarihi.ToString("dd.MM.yyyy")</td>
-                    <td>@(gunKalan > 0 ? gunKalan.ToString() + " gün" : "Süre doldu!")</td>
+                    <td>@teslimTarihi.ToString("dd.MM.yyyy")</td>
+                    <td>
+                        @if (gunKalan > 0)
+                        {
+                            <span>@gunKalan gün kaldı</span>
+                        }
+                        else if (gunKalan == 0)
+                        {
+                            <span class="text-warning">Bugün son gün!</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">@Math.Abs(gunKalan) gün geçmiş!</span>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>

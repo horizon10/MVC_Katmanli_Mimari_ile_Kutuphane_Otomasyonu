@@ -189,13 +189,16 @@
     <Compile Include="Controllers\DuyurularController.cs" />
     <Compile Include="Controllers\EmanetKitaplarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IletisimController.cs" />
     <Compile Include="Controllers\IstatistiklerController.cs" />
     <Compile Include="Controllers\KitaplarController.cs" />
     <Compile Include="Controllers\KitapTurleriController.cs" />
     <Compile Include="Controllers\KullanicilarController.cs" />
     <Compile Include="Controllers\KullaniciRolleriController.cs" />
+    <Compile Include="Controllers\RezervasyonlarController.cs" />
     <Compile Include="Controllers\RollerController.cs" />
     <Compile Include="Controllers\UyelerController.cs" />
+    <Compile Include="Controllers\YorumlarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5353,6 +5356,11 @@
     <Content Include="Views\Home\KitapDetay.cshtml" />
     <Content Include="Views\Home\Profil.cshtml" />
     <Content Include="Views\Home\Emanetlerim.cshtml" />
+    <Content Include="Views\Iletisim\Index.cshtml" />
+    <Content Include="Views\Iletisim\Detay.cshtml" />
+    <Content Include="Views\Rezervasyonlar\Rezervasyonlar.cshtml" />
+    <Content Include="Views\Yorumlar\Yorumlar.cshtml" />
+    <Content Include="Views\Home\Rezervasyonlarim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

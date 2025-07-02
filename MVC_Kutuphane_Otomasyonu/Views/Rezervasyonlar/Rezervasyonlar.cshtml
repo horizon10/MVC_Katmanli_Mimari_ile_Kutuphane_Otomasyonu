@@ -1,0 +1,62 @@
+﻿@model List<MVC_Kutuphane_Otomasyonu.Entities.Model.KitapRezervasyonlar>
+
+@{
+    ViewBag.Title = "Rezervasyonlar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Kitap Rezervasyonları</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Kitap Adı</th>
+                            <th>Üye</th>
+                            <th>Rezervasyon Tarihi</th>
+                            <th>Son Geçerlilik</th>
+                            <th>Durum</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var rezervasyon in Model)
+                        {
+                            <tr>
+                                <td>@rezervasyon.Kitap.KitapAdi</td>
+                                <td>@rezervasyon.Uye.AdiSoyadi</td>
+                                <td>@rezervasyon.RezervasyonTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                                <td>@rezervasyon.RezervasyonSonTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                                <td>
+                                    @if (rezervasyon.RezervasyonDurumu)
+                                    {
+                                        <span class="badge badge-success">Aktif</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-secondary">Pasif</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (rezervasyon.RezervasyonDurumu)
+                                    {
+                                        using (Html.BeginForm("RezervasyonIptal", "Rezervasyonlar", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@rezervasyon.Id" />
+                                            <button type="submit" class="btn btn-sm btn-danger">İptal Et</button>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

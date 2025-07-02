@@ -73,6 +73,7 @@
     <Compile Include="DAL\KitapHareketleriDAL.cs" />
     <Compile Include="DAL\KitapKayitHareketleriDAL.cs" />
     <Compile Include="DAL\KitaplarDAL.cs" />
+    <Compile Include="DAL\KitapRezervasyonlarDAL.cs" />
     <Compile Include="DAL\KitapTurleriDAL.cs" />
     <Compile Include="DAL\KullaniciHareketleriDAL.cs" />
     <Compile Include="DAL\KullanicilarDAL.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Model\KitapHareketleri.cs" />
     <Compile Include="Model\KitapKayitHareketleri.cs" />
     <Compile Include="Model\Kitaplar.cs" />
+    <Compile Include="Model\KitapRezervasyonlar.cs" />
     <Compile Include="Model\KitapTurleri.cs" />
     <Compile Include="Model\KullaniciHareketleri.cs" />
     <Compile Include="Model\Kullanicilar.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Model\Roller.cs" />
     <Compile Include="Model\Uyeler.cs" />
     <Compile Include="Model\ViewModel\KullaniciRolViewModel.cs" />
+    <Compile Include="Model\Yorumlar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Validations\DuyurularValidatior.cs" />

@@ -11,44 +11,115 @@
             <p class="lead">Keşfedilecek binlerce kitap sizi bekliyor</p>
         </div>
     </div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <input type="text" name="arama" class="form-control" placeholder="Kitap adı ara..." value="@Request.QueryString["arama"]" />
+            </div>
+            <div class="col-md-4">
+                <select name="yazar" class="form-control">
+                    <option value="">Tüm Yazarlar</option>
+                    <option>Gülten Dayıoğlu</option>
+                    <option>Fyodor Dostoyevski</option>
+                    <option>Sabahattin Ali</option>
+                    <option>Mustafa Kemal Atatürk</option>
+                    <option>Yaşar Kemal</option>
+                    <option>Frank Herbert</option>
+                    <option>Viktor E. Frankl</option>
+                    <option>Albert Camus</option>
+                    <option>Turgut Özakman</option>
+                    <option>J.R.R. Tolkien</option>
+                    <option>Antoine de Saint-Exupéry</option>
+                    <option>Franz Kafka</option>
+                    <option>Stephen Hawking</option>
+                    <option>Halide Edib Adıvar</option>
+                    <option>Ray Bradbury</option>
+                    <option>James Clear</option>
+                    <option>George Orwell</option>
+                    <option>Lev Tolstoy</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select name="tur" class="form-control">
+                    <option value="">Tüm Türler</option>
+                    <option>Hikaye</option>
+                    <option>Roman</option>
+                    <option>Masal</option>
+                    <option>Biyografi</option>
+                    <option>Edebiyat</option>
+                    <option>Tarih</option>
+                    <option>Bilim Kurgu</option>
+                    <option>Psikoloji</option>
+                    <option>Fantastik</option>
+                    <option>Bilim</option>
+                    <option>Kişisel Gelişim</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search me-1"></i> Filtrele
+                </button>
+            </div>
+        </div>
+    }
 
-    <div class="row">
-        @if (Model != null && Model.Any())
+
+<div class="row">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var kitap in Model)
         {
-            foreach (var kitap in Model)
-            {
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-img-top bg-light text-center py-4">
-                            <i class="fas fa-book-open fa-4x text-primary"></i>
-                        </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-img-top bg-light text-center py-4">
+                        <i class="fas fa-book-open fa-4x text-primary"></i>
+                    </div>
+                    <div class="card-body">
                         <div class="card-body">
-                           <div class="card-body">
-                                <h3 class="card-title text-primary">@kitap.KitapAdi</h3>
-                                <p class="card-text"><strong><i class="fas fa-user-edit me-2"></i>Yazar:</strong> @kitap.YazarAdi</p>
-                                <p class="card-text"><strong><i class="fas fa-tag me-2"></i>Tür:</strong> @(kitap.KitapTurleri?.KitapTuru ?? "Belirtilmemiş")</p>
-                                <a href="@Url.Action("KitapDetay", "Home", new { id = kitap.Id })" class="btn btn-outline-primary btn-sm mt-3 w-100">
-                                    <i class="fas fa-info-circle me-1"></i> Detay
-                                </a>
-                            </div>
-
+                            <h3 class="card-title text-primary">@kitap.KitapAdi</h3>
+                            <p class="card-text"><strong><i class="fas fa-user-edit me-2"></i>Yazar:</strong> @kitap.YazarAdi</p>
+                            <p class="card-text"><strong><i class="fas fa-tag me-2"></i>Tür:</strong> @(kitap.KitapTurleri?.KitapTuru ?? "Belirtilmemiş")</p>
+                            <a href="@Url.Action("KitapDetay", "Home", new { id = kitap.Id })" class="btn btn-outline-primary btn-sm mt-3 w-100">
+                                <i class="fas fa-info-circle me-1"></i> Detay
+                            </a>
                         </div>
+
                     </div>
                 </div>
-
-            }
-        }
-        else
-        {
-            <div class="col-12">
-                <div class="alert alert-warning text-center py-4">
-                    <i class="fas fa-exclamation-circle fa-2x me-2"></i>
-                    <h4 class="d-inline">Gösterilecek kitap bulunamadı</h4>
-                </div>
             </div>
+
         }
 
-    </div>
+
+    }
+
+    else
+    {
+        <div class="col-12">
+            <div class="alert alert-warning text-center py-4">
+                <i class="fas fa-exclamation-circle fa-2x me-2"></i>
+                <h4 class="d-inline">Gösterilecek kitap bulunamadı</h4>
+            </div>
+        </div>
+    }
+    @if (ViewBag.SayfaSayisi > 1)
+    {
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= ViewBag.SayfaSayisi; i++)
+                {
+                    <li class="page-item @(i == ViewBag.SuankiSayfa ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = i, arama = Request.QueryString["arama"], yazar = Request.QueryString["yazar"], tur = Request.QueryString["tur"] })">@i</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
+
+</div>
 </div>
 
 <!-- Font Awesome ikonları için -->

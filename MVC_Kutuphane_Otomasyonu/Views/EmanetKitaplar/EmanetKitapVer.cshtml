@@ -8,46 +8,99 @@
     <div class="col-lg">
         <div class="ibox">
             <div class="ibox-head">
-               <b>Emanet Kitap Verme Sayfası</b>
+                <b>Emanet Kitap Verme Sayfası</b>
             </div>
             <div class="ibox-body">
-
-                @using (Html.BeginForm("EmanetKitapVer", "EmanetKitaplar", FormMethod.Post))
+                @using (Html.BeginForm("EmanetKitapVer", "EmanetKitaplar", FormMethod.Post, new { id = "emanetForm" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
                     <div class="form-group">
-                        @Html.DisplayNameFor(x => x.Uyeler.AdiSoyadi)
-                        @Html.DropDownListFor(x => x.UyeId, (SelectList)ViewBag.UyeListe, "-Seçim Yapınız-", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.UyeId, "", new { @class = "text-danger" })
-
+                        <label>Rezervasyon Seçin</label>
+                        @Html.DropDownList("RezervasyonId", (SelectList)ViewBag.RezervasyonListe,
+                            "-Rezervasyon Seçiniz-",
+                            new { @class = "form-control", id = "rezervasyonDropdown" })
                     </div>
+
+                    <div class="form-group">
+                        @Html.DisplayNameFor(x => x.Uyeler.AdiSoyadi)
+                        @Html.DropDownListFor(x => x.UyeId, (SelectList)ViewBag.UyeListe,
+                            "-Seçim Yapınız-",
+                            new { @class = "form-control", id = "uyeDropdown", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(x => x.UyeId, "", new { @class = "text-danger" })
+                    </div>
+
                     <div class="form-group">
                         @Html.DisplayNameFor(x => x.Kitaplar.KitapAdi)
-                        @Html.DropDownListFor(x => x.KitapId, (SelectList)ViewBag.KitapListe, "-Seçim Yapınız-", new { @class = "form-control" })
+                        @Html.DropDownListFor(x => x.KitapId, (SelectList)ViewBag.KitapListe,
+                            "-Seçim Yapınız-",
+                            new { @class = "form-control", id = "kitapDropdown", @readonly = "readonly" })
                         @Html.ValidationMessageFor(x => x.KitapId, "", new { @class = "text-danger" })
-
                     </div>
+
                     <div class="form-group">
                         @Html.DisplayNameFor(x => x.KitapSayisi)
-                        @Html.TextBoxFor(x => x.KitapSayisi, new { @class = "form-control" })
+                        @Html.TextBoxFor(x => x.KitapSayisi, new { @class = "form-control", @Value = "1", id = "kitapSayisi" })
                         @Html.ValidationMessageFor(x => x.KitapSayisi, "", new { @class = "text-danger" })
-
                     </div>
+
                     <div class="form-group">
                         @Html.DisplayNameFor(x => x.KitapAldigiTarihi)
-                        @Html.TextBoxFor(x => x.KitapAldigiTarihi, new { @class = "form-control" ,type="datetime-local"})
+                        @Html.TextBoxFor(x => x.KitapAldigiTarihi, new
+                        {
+                            @class = "form-control",
+                            type = "datetime-local",
+                            id = "emanetTarihi",
+                            value = DateTime.Now.ToString("yyyy-MM-ddTHH:mm")
+                        })
                         @Html.ValidationMessageFor(x => x.KitapAldigiTarihi, "", new { @class = "text-danger" })
-
                     </div>
-                   
+
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">Ekle</button>
+                        <button type="submit" class="btn btn-success">Emanet Ver</button>
                     </div>
                 }
             </div>
         </div>
     </div>
-
 </div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Rezervasyon seçildiğinde otomatik doldur
+            $('#rezervasyonDropdown').change(function () {
+                var rezervasyonId = $(this).val();
+                if (rezervasyonId) {
+                    $.ajax({
+                        url: '/EmanetKitaplar/GetRezervasyonDetay',
+                        type: 'GET',
+                        data: { rezervasyonId: rezervasyonId },
+                        success: function (data) {
+                            if (data) {
+                                $('#uyeDropdown').val(data.UyeId).trigger('change');
+                                $('#kitapDropdown').val(data.KitapId).trigger('change');
+                                $('#emanetTarihi').val(new Date().toISOString().slice(0, 16));
+
+                                // Formu validate et
+                                $("#emanetForm").validate().form();
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Hata oluştu: ", error);
+                        }
+                    });
+                } else {
+                    // Rezervasyon seçilmediyse temizle
+                    $('#uyeDropdown').val('');
+                    $('#kitapDropdown').val('');
+                }
+            });
+
+            // Dropdown'ları devre dışı bırak ama POST'ta değerleri gönder
+            $('#uyeDropdown, #kitapDropdown').prop('disabled', false);
+        });
+    </script>
+}

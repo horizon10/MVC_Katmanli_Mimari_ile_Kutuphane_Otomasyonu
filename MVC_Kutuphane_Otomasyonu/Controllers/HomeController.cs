@@ -1,4 +1,6 @@
-﻿using MVC_Kutuphane_Otomasyonu.Entities.DAL;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Wordprocessing;
+using MVC_Kutuphane_Otomasyonu.Entities.DAL;
 using MVC_Kutuphane_Otomasyonu.Entities.Model;
 using MVC_Kutuphane_Otomasyonu.Entities.Model.Context;
 using System;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Data.Entity;
 
 namespace MVC_Kutuphane_Otomasyonu.Controllers
 {
@@ -18,22 +21,34 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
         HakkimizdaDAL hakkimizdaDAL = new HakkimizdaDAL();
         IletisimDAL iletisimDAL = new IletisimDAL();
 
-        public ActionResult Index()
+        public ActionResult Index(string arama, string yazar, string tur, int page = 1, int pageSize = 6)
         {
-            try
-            {
-                var kitaplar = context.Kitaplar.Include("KitapTurleri").ToList();
-                if (kitaplar == null || !kitaplar.Any())
-                {
-                    kitaplar = new List<Kitaplar>();
-                }
-                return View(kitaplar);
-            }
-            catch (Exception)
-            {
-                return View(new List<Kitaplar>());
-            }
+            var kitaplar = context.Kitaplar.Include("KitapTurleri").AsQueryable();
+
+            if (!string.IsNullOrEmpty(arama))
+                kitaplar = kitaplar.Where(x => x.KitapAdi.Contains(arama));
+
+            if (!string.IsNullOrEmpty(yazar))
+                kitaplar = kitaplar.Where(x => x.YazarAdi == yazar);
+
+            if (!string.IsNullOrEmpty(tur))
+                kitaplar = kitaplar.Where(x => x.KitapTurleri.KitapTuru == tur);
+
+            var totalCount = kitaplar.Count();
+            var sayfaSayisi = (int)Math.Ceiling((double)totalCount / pageSize);
+
+            ViewBag.SayfaSayisi = sayfaSayisi;
+            ViewBag.SuankiSayfa = page;
+
+            var kitapListesi = kitaplar
+                                .OrderBy(x => x.KitapAdi)
+                                .Skip((page - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
+
+            return View(kitapListesi);
         }
+
 
         public ActionResult About()
         {
@@ -149,15 +164,23 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
 
         public ActionResult KitapDetay(int id)
         {
-            if (Session["AktifUye"] == null)
+            var kitap = context.Kitaplar
+                .Include(k => k.KitapTurleri)
+                .Include(k => k.Yorumlar.Select(y => y.Uye))
+                .FirstOrDefault(k => k.Id == id);
+
+            if (kitap == null)
             {
-                TempData["LoginMessage"] = "Kitap detaylarını görmek için giriş yapmalısınız.";
-                return RedirectToAction("Login");
+                return HttpNotFound("Kitap bulunamadı.");
             }
 
-            var kitap = context.Kitaplar.Include("KitapTurleri").FirstOrDefault(k => k.Id == id);
-            if (kitap == null)
-                return HttpNotFound("Kitap bulunamadı.");
+            // Benzer kitapları getir (aynı türdeki kitaplar)
+            ViewBag.BenzerKitaplar = context.Kitaplar
+                .Include(k => k.KitapTurleri)
+                .Where(k => k.KitapTurleri.Id == kitap.KitapTurleri.Id && k.Id != kitap.Id)
+                .OrderByDescending(k => k.EklemeTarihi)
+                .Take(4)
+                .ToList();
 
             return View(kitap);
         }
@@ -237,6 +260,179 @@ namespace MVC_Kutuphane_Otomasyonu.Controllers
                 .ToList();
 
             return View(emanetler); // ViewBag değil, model olarak gönderiyoruz
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult YorumEkle(Yorumlar yorum, int kitapId)
+        {
+            if (Session["AktifUye"] == null)
+            {
+                TempData["ErrorMessage"] = "Yorum yapabilmek için giriş yapmalısınız.";
+                return RedirectToAction("Login");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var uye = (Uyeler)Session["AktifUye"];
+
+                yorum.UyeId = uye.Id;
+                yorum.KitapId = kitapId;
+                yorum.YorumTarihi = DateTime.Now;
+
+                context.Yorumlar.Add(yorum);
+                context.SaveChanges();
+
+                TempData["SuccessMessage"] = "Yorumunuz başarıyla eklendi!";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Yorum eklenirken bir hata oluştu. Lütfen tüm alanları doldurun.";
+            }
+
+            return RedirectToAction("KitapDetay", new { id = kitapId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult YorumSil(int id)
+        {
+            if (Session["AktifUye"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var yorum = context.Yorumlar
+                .Include(y => y.Uye)
+                .FirstOrDefault(y => y.Id == id);
+
+            if (yorum == null)
+            {
+                TempData["ErrorMessage"] = "Yorum bulunamadı.";
+                return RedirectToAction("Index");
+            }
+
+            var uye = (Uyeler)Session["AktifUye"];
+
+            // Sadece yorum sahibi veya admin silebilir
+            if (yorum.UyeId == uye.Id || User.IsInRole("Admin"))
+            {
+                context.Yorumlar.Remove(yorum);
+                context.SaveChanges();
+                TempData["SuccessMessage"] = "Yorum başarıyla silindi.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Bu işlem için yetkiniz yok.";
+            }
+
+            return RedirectToAction("KitapDetay", new { id = yorum.KitapId });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RezerveEt(int kitapId)
+        {
+            if (Session["AktifUye"] == null)
+            {
+                TempData["ErrorMessage"] = "Rezervasyon yapabilmek için giriş yapmalısınız.";
+                return RedirectToAction("Login");
+            }
+
+            var kitap = context.Kitaplar.Find(kitapId);
+            if (kitap == null)
+            {
+                return HttpNotFound("Kitap bulunamadı.");
+            }
+
+            if (kitap.StokAdedi <= 0)
+            {
+                TempData["ErrorMessage"] = "Bu kitap şu anda stokta bulunmamaktadır.";
+                return RedirectToAction("KitapDetay", new { id = kitapId });
+            }
+
+            var uye = (Uyeler)Session["AktifUye"];
+
+            // Aynı kitap için zaten rezervasyon var mı kontrolü
+            var existingReservation = context.kitapRezervasyonlar
+                .FirstOrDefault(r => r.KitapId == kitapId && r.UyeId == uye.Id && r.RezervasyonDurumu == true);
+
+            if (existingReservation != null)
+            {
+                TempData["ErrorMessage"] = "Bu kitap için zaten rezervasyonunuz bulunmaktadır.";
+                return RedirectToAction("KitapDetay", new { id = kitapId });
+            }
+
+            // Rezervasyon oluştur
+            var rezervasyon = new KitapRezervasyonlar
+            {
+                KitapId = kitapId,
+                UyeId = uye.Id,
+                RezervasyonTarihi = DateTime.Now,
+                RezervasyonSonTarihi = DateTime.Now.AddDays(3), // 3 gün rezervasyon süresi
+                RezervasyonDurumu = true
+            };
+
+            context.kitapRezervasyonlar.Add(rezervasyon);
+            kitap.StokAdedi -= 1; // Stoktan düş
+            context.SaveChanges();
+
+            TempData["SuccessMessage"] = "Kitap başarıyla rezerve edildi! 3 gün içinde kütüphaneden alabilirsiniz.";
+            return RedirectToAction("KitapDetay", new { id = kitapId });
+        }
+        public ActionResult Rezervasyonlarim()
+        {
+            if (Session["AktifUye"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var uye = (Uyeler)Session["AktifUye"];
+
+            var rezervasyonlar = context.kitapRezervasyonlar
+                .Include(r => r.Kitap)
+                .Where(r => r.UyeId == uye.Id && r.RezervasyonDurumu == true)
+                .OrderBy(r => r.RezervasyonSonTarihi)
+                .ToList();
+
+            return View(rezervasyonlar);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RezervasyonIptal(int id)
+        {
+            if (Session["AktifUye"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var uye = (Uyeler)Session["AktifUye"];
+            var rezervasyon = context.kitapRezervasyonlar
+                .Include(r => r.Kitap)
+                .FirstOrDefault(r => r.Id == id && r.UyeId == uye.Id);
+
+            if (rezervasyon == null)
+            {
+                TempData["ErrorMessage"] = "Rezervasyon bulunamadı veya iptal edilemez.";
+                return RedirectToAction("Rezervasyonlarim");
+            }
+
+            try
+            {
+                // Kitap stoğunu artır
+                rezervasyon.Kitap.StokAdedi += 1;
+
+                // Rezervasyonu iptal et
+                rezervasyon.RezervasyonDurumu = false;
+
+                context.SaveChanges();
+
+                TempData["SuccessMessage"] = "Rezervasyon başarıyla iptal edildi.";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "İptal işlemi sırasında bir hata oluştu: " + ex.Message;
+            }
+
+            return RedirectToAction("Rezervasyonlarim");
         }
 
 

@@ -27,6 +27,8 @@ namespace MVC_Kutuphane_Otomasyonu.Entities.Model.Context
         public DbSet<KullaniciRolleri> KullaniciRolleri { get; set; }
         public DbSet<Roller> Roller { get; set; }
         public DbSet<Uyeler> Uyeler { get; set; }
+        public DbSet<Yorumlar> Yorumlar { get; set; }
+        public DbSet<KitapRezervasyonlar> kitapRezervasyonlar   { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

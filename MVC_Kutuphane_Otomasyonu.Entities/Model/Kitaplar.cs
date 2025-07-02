@@ -28,6 +28,6 @@ namespace MVC_Kutuphane_Otomasyonu.Entities.Model
         public List<EmanetKitaplar> EmanetKitaplar { get; set; }
         public List<KitapHareketleri> KitapHareketleri { get; set; }
         public List<KitapKayitHareketleri> KitapKayitHareketleri { get; set; }
-        
+        public virtual ICollection<Yorumlar> Yorumlar { get; set; }
     }
 }

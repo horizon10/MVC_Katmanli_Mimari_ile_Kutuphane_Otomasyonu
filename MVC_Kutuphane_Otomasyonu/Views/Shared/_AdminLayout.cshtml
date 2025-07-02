@@ -46,7 +46,7 @@
     <link href="~/AdminDashboard/admincast-master/html/dist/assets/css/main.min.css" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
 </head>
-
+@RenderSection("Scripts", required: false)
 <body class="fixed-navbar">
     <div class="page-wrapper">
         <!-- START HEADER-->
@@ -90,55 +90,55 @@
                                     <a class="pull-right" href="mailbox.html">Hepsi</a>
                                 </div>
                             </li>-->
-                            @*<li class="list-group list-group-divider scroller" data-height="240px" data-color="#71808f">
-                                    <div>
-                                        <a class="list-group-item">
-                                            <div class="media">
-                                                <div class="media-img">
-                                                    <img src="~/AdminDashboard/admincast-master/html/dist/assets/img/users/u1.jpg" />
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="font-strong"> </div>Jeanne Gonzalez<small class="text-muted float-right">Just now</small>
-                                                    <div class="font-13">Your proposal interested me.</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item">
-                                            <div class="media">
-                                                <div class="media-img">
-                                                    <img src="~/AdminDashboard/admincast-master/html/dist/assets/img/users/u2.jpg" />
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="font-strong"></div>Becky Brooks<small class="text-muted float-right">18 mins</small>
-                                                    <div class="font-13">Lorem Ipsum is simply.</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item">
-                                            <div class="media">
-                                                <div class="media-img">
-                                                    <img src="~/AdminDashboard/admincast-master/html/dist/assets/img/users/u3.jpg" />
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="font-strong"></div>Frank Cruz<small class="text-muted float-right">18 mins</small>
-                                                    <div class="font-13">Lorem Ipsum is simply.</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item">
-                                            <div class="media">
-                                                <div class="media-img">
-                                                    <img src="~/AdminDashboard/admincast-master/html/dist/assets/img/users/u4.jpg" />
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="font-strong"></div>Rose Pearson<small class="text-muted float-right">3 hrs</small>
-                                                    <div class="font-13">Lorem Ipsum is simply.</div>
-                                                </div>
-                                            </div>
-                                        </a>
+                    @*<li class="list-group list-group-divider scroller" data-height="240px" data-color="#71808f">
+                            <div>
+                                <a class="list-group-item">
+                                    <div class="media">
+                                        <div class="media-img">
+                                            <img src="~/AdminDashboard/admincast-master/html/dist/assets/img/users/u1.jpg" />
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="font-strong"> </div>Jeanne Gonzalez<small class="text-muted float-right">Just now</small>
+                                            <div class="font-13">Your proposal interested me.</div>
+                                        </div>
                                     </div>
-                                </li>*@
-                        <!--</ul>
+                                </a>
+                                <a class="list-group-item">
+                                    <div class="media">
+                                        <div class="media-img">
+                                            <img src="~/AdminDashboard/admincast-master/html/dist/assets/img/users/u2.jpg" />
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="font-strong"></div>Becky Brooks<small class="text-muted float-right">18 mins</small>
+                                            <div class="font-13">Lorem Ipsum is simply.</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="list-group-item">
+                                    <div class="media">
+                                        <div class="media-img">
+                                            <img src="~/AdminDashboard/admincast-master/html/dist/assets/img/users/u3.jpg" />
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="font-strong"></div>Frank Cruz<small class="text-muted float-right">18 mins</small>
+                                            <div class="font-13">Lorem Ipsum is simply.</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="list-group-item">
+                                    <div class="media">
+                                        <div class="media-img">
+                                            <img src="~/AdminDashboard/admincast-master/html/dist/assets/img/users/u4.jpg" />
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="font-strong"></div>Rose Pearson<small class="text-muted float-right">3 hrs</small>
+                                            <div class="font-13">Lorem Ipsum is simply.</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>*@
+                    <!--</ul>
                     </li>-->
                     @*<li class="dropdown dropdown-notification">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
@@ -201,9 +201,9 @@
                             <span></span>@kullaniciAdi<i class="fa fa-angle-down m-l-5"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            @{ 
+                            @{
                                 var userName = User.Identity.Name;//Kullanıcının email bilgisi
-                                var model = context.Kullanicilar.FirstOrDefault(x=>x.Email==userName);
+                                var model = context.Kullanicilar.FirstOrDefault(x => x.Email == userName);
                                 int Id = model.Id;
                             }
 
@@ -329,6 +329,9 @@
                                 @Html.ActionLink("EmanetKitaplar", "Index", "EmanetKitaplar", new { area = "" }, new { @class = "nav-link" })
                             </li>
                             <li>
+                                @Html.ActionLink("Rezervasyonlar", "Rezervasyonlar", "Rezervasyonlar", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
                                 @Html.ActionLink("Duyurular", "Index", "Duyurular", new { area = "" }, new { @class = "nav-link" })
                             </li>
                             <li>
@@ -341,32 +344,38 @@
                                 @Html.ActionLink("Üyeler", "Index", "Uyeler", new { area = "" }, new { @class = "nav-link" })
                             </li>
                             <li>
+                                @Html.ActionLink("İletişim", "Index", "Iletisim", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Yorumlar", "Yorumlar", "Yorumlar", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
                                 @Html.ActionLink("Anasayfa", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                             </li>
                             @*<li>
-            <a href="invoice.html">Invoice</a>
-        </li>
-        <li>
-            <a href="profile.html">Profile</a>
-        </li>
-        <li>
-            <a href="login.html">Login</a>
-        </li>
-        <li>
-            <a href="register.html">Register</a>
-        </li>
-        <li>
-            <a href="lockscreen.html">Lockscreen</a>
-        </li>
-        <li>
-            <a href="forgot_password.html">Forgot password</a>
-        </li>
-        <li>
-            <a href="error_404.html">404 error</a>
-        </li>
-        <li>
-            <a href="error_500.html">500 error</a>
-        </li>*@
+                                    <a href="invoice.html">Invoice</a>
+                                </li>
+                                <li>
+                                    <a href="profile.html">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login</a>
+                                </li>
+                                <li>
+                                    <a href="register.html">Register</a>
+                                </li>
+                                <li>
+                                    <a href="lockscreen.html">Lockscreen</a>
+                                </li>
+                                <li>
+                                    <a href="forgot_password.html">Forgot password</a>
+                                </li>
+                                <li>
+                                    <a href="error_404.html">404 error</a>
+                                </li>
+                                <li>
+                                    <a href="error_500.html">500 error</a>
+                                </li>*@
                         </ul>
                     </li>
                     @*<li>

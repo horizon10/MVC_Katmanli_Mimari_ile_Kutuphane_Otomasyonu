@@ -1,0 +1,67 @@
+﻿@model List<MVC_Kutuphane_Otomasyonu.Entities.Model.Yorumlar>
+
+@{
+    ViewBag.Title = "Yorum Yönetimi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Yorumlar</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Kitap</th>
+                            <th>Üye</th>
+                            <th>Yorum</th>
+                            <th>Tarih</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var yorum in Model)
+                        {
+                            <tr>
+                                <td>@yorum.Kitap.KitapAdi</td>
+                                <td>@yorum.Uye.AdiSoyadi</td>
+                                <td>@yorum.Icerik</td>
+                                <td>@yorum.YorumTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                                <td>
+                                    @using (Html.BeginForm("YorumSil", "Yorumlar", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@yorum.Id" />
+                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Bu yorumu silmek istediğinize emin misiniz?')">
+                                            Sil
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    #dataTable {
+        width: 100% !important;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+</style>

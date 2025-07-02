@@ -1,0 +1,64 @@
+﻿@model List<MVC_Kutuphane_Otomasyonu.Entities.Model.KitapRezervasyonlar>
+@{
+    ViewBag.Title = "Rezervasyonlarım";
+    Layout = "~/Views/Shared/_GenelLayout.cshtml";
+}
+
+<h2 class="my-3">Rezervasyon Yaptığınız Kitaplar</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Kitap Adı</th>
+                <th>Rezervasyon Tarihi</th>
+                <th>Son Geçerlilik Tarihi</th>
+                <th>Kalan Gün (3 Gün Süre)</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var gunKalan = (item.RezervasyonSonTarihi - DateTime.Now).Days;
+                <tr class="@(gunKalan <= 1 ? "table-danger" : "")">
+                    <td>@item.Kitap.KitapAdi</td>
+                    <td>@item.RezervasyonTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>@item.RezervasyonSonTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>@(gunKalan > 0 ? gunKalan.ToString() + " gün" : "Süre doldu!")</td>
+                    <td>
+                        @using (Html.BeginForm("RezervasyonIptal", "Home", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Bu rezervasyonu iptal etmek istediğinize emin misiniz?')">
+                                İptal Et
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">Şu anda aktif rezervasyonunuz bulunmamaktadır.</div>
+}
+
+<style>
+    .table-danger {
+        background-color: #ffdddd;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(0,0,0,.075);
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+</style>

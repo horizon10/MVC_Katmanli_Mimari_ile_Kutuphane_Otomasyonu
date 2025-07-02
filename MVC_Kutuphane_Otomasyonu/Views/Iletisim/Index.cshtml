@@ -1,0 +1,39 @@
+﻿@model List<MVC_Kutuphane_Otomasyonu.Entities.Model.Iletisim>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Adı Soyadı</th>
+                <th>Email</th>
+                <th>Başlık</th>
+                <th>Tarih</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.AdiSoyadi</td>
+                    <td>@item.Email</td>
+                    <td>@item.Baslik</td>
+                    <td>@item.Tarih.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>
+                        <a href="/Iletisim/Detay/@item.Id" class="btn btn-sm btn-info">Detay</a>
+                        <a href="/Iletisim/Sil/@item.Id" class="btn btn-sm btn-danger" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">Hiç iletişim mesajı bulunmamaktadır.</div>
+}
